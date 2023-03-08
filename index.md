@@ -374,7 +374,7 @@ SHA1:B3260CE8C339E13C4E6D327E1310B06C8E1402B0<br>
 >[Windows 10消费版更新于2022年12月](ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_updated_dec_2022_x64_dvd_a95e3989.iso|6101671936|5C65BBF0491119EBD1A3349AA064263D|/)<br>
 >[Windows 10商业版更新于2022年12月](ed2k://|file|zh-cn_windows_10_business_editions_version_22h2_updated_dec_2022_x64_dvd_cde06342.iso|5964230656|4CAE148031EF42D2183B149392E281B7|/)<br>
 >[微软下载](https://www.microsoft.com/zh-cn/software-download/windows10)<br>
->[依优下载站](download.hotokokoa.cn)<br>
+>[依优下载站](https://download.hotokokoa.cn/)<br>
 ## <center>Windows 11</center>
 <center>Windows 11 21H2</center>
 [Windows 11消费版](ed2k://|file|zh-cn_windows_11_consumer_editions_x64_dvd_904f13e4.iso|5517273088|DFD1AE88E36516B87382FC3D3D3F46AD|/)<br>
