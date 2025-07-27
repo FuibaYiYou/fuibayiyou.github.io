@@ -1,276 +1,165 @@
 <html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows 1.0</title>
+    <title>Windows镜像搬运站</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1a56db',
-                        secondary: '#4b5563',
-                        accent: '#3b82f6',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .link-hover {
-                @apply transition-all duration-200 ease-in-out;
-            }
-            .section-fade {
-                @apply opacity-0 transform translate-y-4 transition-all duration-500 ease-out;
-            }
-            .section-visible {
-                @apply opacity-100 transform translate-y-0;
-            }
-        }
-    </style>
+    <script></script>
+
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
-    <!-- 页面头部 -->
-    <header class="py-8 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto text-center">
-        <h1 class="text-3xl md:text-4xl font-bold mb-2">资源下载中心</h1>
-        <p class="text-gray-600 text-lg">点击下方链接获取所需资源</p>
-        <hr class="border-gray-300 my-6 max-w-md mx-auto">
-    </header>
-
-    
-    <!-- 主要内容区 -->
-    <main class="px-4 md:px-8 lg:px-16 max-w-4xl mx-auto pb-16">
-        <!-- 搜索框 -->
-        <div class="mb-10 section-fade max-w-2xl mx-auto">
-            <input type="text" id="searchInput" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="搜索资源...">
-        </div>
-
-        <!-- 文档类资源 -->
-        <section class="mb-12 section-fade text-center">
-            <h2 class="text-2xl font-semibold mb-4 flex items-center justify-center">
-                <i class="fa fa-file-text-o mr-2 text-primary"></i>文档资源
-            </h2>
-            <ul class="space-y-3 max-w-md mx-auto">
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">用户手册 v2.3.pdf</a>
-                    <span class="text-gray-500 text-sm ml-2">2.4 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">安装指南.docx</a>
-                    <span class="text-gray-500 text-sm ml-2">1.8 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">产品规格说明书.pdf</a>
-                    <span class="text-gray-500 text-sm ml-2">3.7 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">API接口文档.pdf</a>
-                    <span class="text-gray-500 text-sm ml-2">5.2 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">技术白皮书.pdf</a>
-                    <span class="text-gray-500 text-sm ml-2">4.1 MB</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- 软件类资源 -->
-        <section class="mb-12 section-fade text-center">
-            <h2 class="text-2xl font-semibold mb-4 flex items-center justify-center">
-                <i class="fa fa-download mr-2 text-primary"></i>软件资源
-            </h2>
-            <ul class="space-y-3 max-w-md mx-auto">
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">客户端安装包 v5.1.exe</a>
-                    <span class="text-gray-500 text-sm ml-2">68.5 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">Mac版客户端.dmg</a>
-                    <span class="text-gray-500 text-sm ml-2">72.3 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">Linux版客户端.tar.gz</a>
-                    <span class="text-gray-500 text-sm ml-2">54.7 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">插件包.zip</a>
-                    <span class="text-gray-500 text-sm ml-2">12.8 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">离线数据包.rar</a>
-                    <span class="text-gray-500 text-sm ml-2">215.4 MB</span>
-                </li>
-            </ul>
+<body>
+    <div class="text-5xl text-black text-center mt-10">
+        Windows镜像搬运站
+    </div>
+    <div class="text-2xl text-black text-center mt-4">
+        Microsoft Disk Operating system
         
-        </section>
-
-        <!-- 素材类资源 -->
-        <section class="mb-12 section-fade text-center">
-            <h2 class="text-2xl font-semibold mb-4 flex items-center justify-center">
-                <i class="fa fa-picture-o mr-2 text-primary"></i>素材资源
-            </h2>
-            <ul class="space-y-3 max-w-md mx-auto">
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">图标集素材.zip</a>
-                    <span class="text-gray-500 text-sm ml-2">34.2 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">背景图片合集.rar</a>
-                    <span class="text-gray-500 text-sm ml-2">128.7 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">模板文件包.zip</a>
-                    <span class="text-gray-500 text-sm ml-2">45.6 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">字体库集合.tar.gz</a>
-                    <span class="text-gray-500 text-sm ml-2">89.3 MB</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- 补丁与更新 -->
-        <section class="mb-12 section-fade text-center">
-            <h2 class="text-2xl font-semibold mb-4 flex items-center justify-center">
-                <i class="fa fa-wrench mr-2 text-primary"></i>补丁与更新
-            </h2>
-            <ul class="space-y-3 max-w-md mx-auto">
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">安全补丁 v5.1.2.exe</a>
-                    <span class="text-gray-500 text-sm ml-2">3.2 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">功能更新包 v5.1.3.zip</a>
-                    <span class="text-gray-500 text-sm ml-2">15.7 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">语言包补丁.rar</a>
-                    <span class="text-gray-500 text-sm ml-2">8.4 MB</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- 其他资源 -->
-        <section class="mb-12 section-fade text-center">
-            <h2 class="text-2xl font-semibold mb-4 flex items-center justify-center">
-                <i class="fa fa-ellipsis-h mr-2 text-primary"></i>其他资源
-            </h2>
-            <ul class="space-y-3 max-w-md mx-auto">
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">示例数据.csv</a>
-                    <span class="text-gray-500 text-sm ml-2">1.2 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">测试报告.pdf</a>
-                    <span class="text-gray-500 text-sm ml-2">2.8 MB</span>
-                </li>
-                <li class="link-hover hover:pl-2">
-                    <a href="#" class="text-primary hover:text-accent underline">开发工具集.zip</a>
-                    <span class="text-gray-500 text-sm ml-2">78.4 MB</span>
-                </li>
-            </ul>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="bg-gray-100 py-6 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto border-t border-gray-200 text-center">
-        <div class="text-gray-600 text-sm">
-            <p>© 2023 资源下载中心 | 所有资源仅供合法使用</p>
-            <p class="mt-2">如有下载问题，请联系 <a href="mailto:support@example.com" class="text-primary hover:underline">support@example.com</a></p>
+    </div>
+    <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://winworldpc.com/product/ms-dos/50" target="_blank" class="hover:underline">
+            MS-DOS 5.0
+            </a>
+<div class="text-2xl text-black text-center mt-4">
+        Microsoft Windows 1.0
         </div>
-    </footer>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://winworldpc.com/product/windows-10/101" target="_blank" class="hover:underline">
+            Microsoft Windows 1.0
+            </a>
+<div class="text-2xl text-black text-center mt-4">
+        Microsoft Windows 2.0
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://winworldpc.com/product/windows-20/20" target="_blank" class="hover:underline">
+            Microsoft Windows 2.0
+            </a>
 
-    <!-- JavaScript -->
-    <script>
-        // 页面滚动时的渐入效果
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section-fade');
-            
-            // 初始显示第一个部分
-            if (sections.length > 0) {
-                sections[0].classList.add('section-visible');
-            }
-            
-            // 检查元素是否在视口中
-            function checkVisibility() {
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    const isVisible = (
-                        rect.top >= 0 &&
-                        rect.left >= 0 &&
-                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                    );
-                    
-                    if (isVisible) {
-                        section.classList.add('section-visible');
-                    }
-                });
-            }
-            
-            // 监听滚动事件
-            window.addEventListener('scroll', checkVisibility);
-            
-            // 初始检查
-            checkVisibility();
+ <div class="text-2xl text-black text-center mt-4">
+        Microsoft Disk Operating system
+        
+    </div>
+    <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://winworldpc.com/download/08f2bb45-bea8-11e8-9b71-fa163e9022f0
+" target="_blank" class="hover:underline">
+            MS-DOS 6.22
+            </a>
 
-            // 搜索功能
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-                const links = document.querySelectorAll('a');
-                
-                links.forEach(link => {
-                    const parentLi = link.closest('li');
-                    const text = link.textContent.toLowerCase();
-                    
-                    if (text.includes(searchTerm)) {
-                        parentLi.style.display = 'block';
-                    } else {
-                        parentLi.style.display = 'none';
-                    }
-                });
-            });
+<div class="text-2xl text-black text-center mt-4">
+        Microsoft Windows 3.0
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://winworldpc.com/download/c3a1c398-c2b9-c2a6-c3a6-c39211c3a6ef" target="_blank" class="hover:underline">
+            Microsoft Windows 3.0
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+        Microsoft Windows NT 3.11
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnrbe9322c1421344c8ae72574e3f1483f6?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAV0C-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Microsoft Windows NT 3.11
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+        Microsoft Windows 3.2
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://winworldpc.com/download/41443603-18c3-9a11-c3a4-e284a2c3a570" target="_blank" class="hover:underline">
+            Microsoft Windows 3.2
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+        Microsoft Windows NT 3.51
+        </div>
+             <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnr992848ce0c78413eb375a515658a41a0?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAV0E-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Microsoft Windows NT 3.51 Server 
+            </a>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnr62c6f9bac8fe42fbb2604be99a13ad93?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAVN0-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Microsoft Windows NT 3.51 Workstation
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+        Microsoft Windows NT 4.0
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="ed2k://|file|sc_winnt_4.0_svr.iso|676548608|3BCB905EB3A6ED9AB685B5701BF94A29|/" target="_blank" class="hover:underline">
+            Microsoft Windows NT 4.0 Server
+            </a>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnr8725d5b2a64b4fce905df685e869142a?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAVN1-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Microsoft Windows NT 4.0 Workstation
+            </a>
+</div>
+    <div class="text-2xl text-black text-center mt-4">
+        Microsoft Disk Operating system
+        
+    </div>
+    <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://winworldpc.com/download/40c2bd6b-6618-c39a-11c3-a4e284a2c3a5" target="_blank" class="hover:underline">
+            MS-DOS 7.1
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+         Windows 95
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnrf6bc4da3aff34cc98cbe7e8e7bed8012?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAVN2-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Windows 95
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+        Windows 98
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnre22acc1235e74e7484a7c36af831fbfc?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAVN3-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Windows 98
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+        Windows Me
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnr2bf1588292e94d478a371507f4d085e0?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAV0D-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Windows Me
+            </a>
+            <div class="text-2xl text-black text-center mt-4">
+        Windows 2000
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="ed2k://|file|ZRMPSEL_CN.iso|402690048|00D1BDA0F057EDB8DA0B29CF5E188788|/" target="_blank" class="hover:underline">
+            Windows 2000专业版
+            </a>
+        <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnr878011c47d3f4559b4efef27936bb809?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAVN6-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Windows 2000服务器版
+            </a>
+           <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnr566afdf1f13744069c8f3984481f6bda?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAVN7-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Windows 2000进阶服务器版
+            </a>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/kpgnrbc61ef66d5c24081b1045e8c0732ab0d?x-cli-msg=%7B%22linkId%22%3A%221FHXLhOAVN8-36mnJ%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D
+" target="_blank" class="hover:underline">
+            Windows 2000数据中心服务器版
+            </a>
 
-            // 为所有下载链接添加点击事件
-            const downloadLinks = document.querySelectorAll('a');
-            downloadLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const fileName = this.textContent;
-                    
-                    // 模拟下载过程
-                    this.textContent = '正在下载...';
-                    this.classList.add('text-gray-400');
-                    
-                    setTimeout(() => {
-                        this.textContent = fileName;
-                        this.classList.remove('text-gray-400');
-                        
-                        // 显示下载完成提示
-                        const notification = document.createElement('div');
-                        notification.textContent = `已开始下载: ${fileName}`;
-                        notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg z-50';
-                        document.body.appendChild(notification);
-                        
-                        // 3秒后移除提示
-                        setTimeout(() => {
-                            notification.style.opacity = '0';
-                            notification.style.transition = 'opacity 0.5s ease';
-                            setTimeout(() => {
-                                document.body.removeChild(notification);
-                            }, 500);
-                        }, 3000);
-                    }, 1000);
-                });
-            });
-        });
-    </script>
+            <div class="text-2xl text-black text-center mt-4">
+        Windows 
+        </div>
+     <div class="text-sm text-blue-600 text-center mt-2">
+        <a href="链接" target="_blank" class="hover:underline">
+            Windows 
+            </a>
 
 
-</body></html>
+
+
+
+        </a>
+    </div>
+</body>
+</html>
