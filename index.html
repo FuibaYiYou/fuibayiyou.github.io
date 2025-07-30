@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="assets/js/mobile.js"></script>
+    <script>
+        // IE浏览器检测并跳转
+        function isIE() {
+            const userAgent = window.navigator.userAgent;
+            return userAgent.indexOf('MSIE ') > -1 || userAgent.indexOf('Trident/') > -1;
+        }
+        if (isIE()) {
+            window.location.href = 'Internet Explorer.html';
+        }
+        // 安卓浏览器检测
+        
+    </script>
+    <title>我的网站标题</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease;
+        }
+        .light {
+            color: #333;
+        }
+        .dark {
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-top: 40px;
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .light .theme-toggle {
+            background-color: #fff;
+            color: #ffcc00;
+        }
+        .dark .theme-toggle {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>我的网站标题</h1>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon" style="display: none;">🌙</span>
+    </button>
+
+    <script>
+        // 检测是否为移动设备
+        function isMobile() {
+            return window.innerWidth < 768;
+        }
+
+        // 检测当前时间段（6点-18点为白天，否则为晚上）
+        function isDayTime() {
+            const hour = new Date().getHours();
+            return hour >= 6 && hour < 18;
+        }
+
+        // 设置背景图和颜色模式
+        function setBackground(isLightMode) {
+            const body = document.body;
+            const isMobileDevice = isMobile();
+            // 如果传入了模式参数则使用，否则根据时间自动判断
+            const lightMode = isLightMode !== undefined ? isLightMode : isDayTime();
+            
+            // 设置背景图
+            let bgImage;
+            if (isMobileDevice) {
+                bgImage = lightMode ? 'mobile-light.jpg' : 'mobile-dark.jpg';
+            } else {
+                bgImage = lightMode ? 'desktop-light.jpg' : 'desktop-dark.jpg';
+            }
+            
+            // 设置颜色模式
+            const mode = lightMode ? 'light' : 'dark';
+            body.className = mode;
+            body.style.backgroundImage = `url('${bgImage}')`;
+
+            // 更新按钮图标
+            document.querySelector('.sun').style.display = lightMode ? 'inline' : 'none';
+            document.querySelector('.moon').style.display = lightMode ? 'none' : 'inline';
+        }
+
+        // 初始化设置
+        setBackground();
+
+        // 监听窗口大小变化，重新适配
+        window.addEventListener('resize', () => {
+            // 保持当前模式不变，只更新设备类型导致的背景图变化
+            const isLight = document.body.classList.contains('light');
+            setBackground(isLight);
+        });
+
+        // 主题切换按钮事件
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const isLight = document.body.classList.contains('light');
+            setBackground(!isLight); // 切换模式
+        });
+
+        // 每小时检查一次时间，自动更新（如果没有手动切换过）
+        setInterval(() => {
+            // 只有当当前模式与时间模式一致时才自动更新
+            const currentIsLight = document.body.classList.contains('light');
+            const timeIsLight = isDayTime();
+            if (currentIsLight === timeIsLight) {
+                setBackground(timeIsLight);
+            }
+        }, 3600000);
+    </script>
+</body>
+</html>
