@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        // 立即执行函数，确保在页面加载初期就检测IE浏览器
-        (function() {
-            // 更全面的IE浏览器检测
-            const isIE = /MSIE|Trident|Edge\/12-18/.test(navigator.userAgent);
-            
-            if (isIE) {
-                // 立即跳转到指定页面，不加载其他内容
-                window.location.href = 'Internet Explorer.html';
-                // 阻止后续代码执行
-                throw new Error('IE浏览器检测到，已跳转');
-            }
-        })();
+        // 使用var替代const/let保证兼容性
+(function() {
+    var ua = window.navigator.userAgent;
+    var isIE = /MSIE|Trident/.test(ua);
+    
+    // 专门检测IE11
+    var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+    
+    if (isIE || isIE11) {
+        try {
+            // 使用replace避免回退问题
+            window.location.replace('Internet Explorer.html');
+        } catch(e) {
+            // 备用跳转方式
+            window.location.href = 'Internet Explorer.html';
+        }
+        // 停止执行后续脚本
+        return;
+    }
+})();
     </script>
     <script src="assets/js/mobile.js"></script>
     <script>
@@ -534,4 +542,5 @@
         } (window, document);
     </script>
 </body>
+
 </html>
