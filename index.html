@@ -4,46 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        (function() {
-    // 更全面的IE浏览器检测
-    var isIE = false;
-    try {
-        isIE = /MSIE|Trident|Edge\/12-18/.test(navigator.userAgent);
         
-        if (isIE) {
-            // 使用更可靠的跳转方式
-            window.location.replace('Internet Explorer.html');
-            // 阻止后续代码执行
-            return;
-        }
-    } catch(e) {
-        // IE特有的错误处理
-        if(window.navigator.userAgent.indexOf("MSIE ") > -1 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-            window.location.replace('Internet Explorer.html');
-            return;
-        }
-    }
-})();
-        // 使用var替代const/let保证兼容性
-(function() {
-    var ua = window.navigator.userAgent;
-    var isIE = /MSIE|Trident/.test(ua);
-    
-    // 专门检测IE11
-    var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-    
-    if (isIE || isIE11) {
-        try {
-            // 使用replace避免回退问题
-            window.location.replace('Internet Explorer.html');
-        } catch(e) {
-            // 备用跳转方式
-            window.location.href = 'Internet Explorer.html';
-        }
-        // 停止执行后续脚本
-        return;
-    }
-})();
     </script>
     <script src="assets/js/mobile.js"></script>
     <script>
@@ -564,4 +525,5 @@
 </body>
 
 </html>
+
 
