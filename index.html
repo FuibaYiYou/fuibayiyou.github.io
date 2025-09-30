@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows搬运站</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+</head>
+    <script>
+        window.onload = function() {
+            alert('国庆中秋快乐');
+        };
+    </script>
+<body>
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md rounded-lg overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-2">
+                    <i id="backButton" class="fa fa-arrow-left back-button" onclick="goBack()" style="display: none;"></i>
+                    <div id="navPath" class="text-sm font-medium text-gray-700"></div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+        let currentPath = ['首页'];
+        const fileSystem = {
+            '首页': [
+                { type: 'folder', name: 'Windows 1.0', contents: 'Windows 1.0' },
+                { type: 'folder', name: 'Windows 2.0', contents: 'Windows 2.0' },
+                { type: 'folder', name: 'Windows 3.0', contents: 'Windows 3.0' },
+                { type: 'folder', name: 'Windows 3.1', contents: 'Windows 3.1' },
+                { type: 'folder', name: 'Windows 3.11', contents: 'Windows 3.11' },
+                { type: 'folder', name: 'Windows 3.2', contents: 'Windows 3.2' },               
+                { type: 'folder', name: 'Windows NT', contents: 'Windows NT' },
+                { type: 'file', name: 'Windows 95', url: 'https://www.123865.com/s/UjR9-oWM5d?pwd=4byE#' },
+                { type: 'file', name: 'Windows 98', url: 'https://www.123865.com/s/UjR9-mWM5d?pwd=cnJq#' },
+                { type: 'file', name: 'Windows Me', url: 'https://www.123865.com/s/UjR9-1WM5d?pwd=oYmN#' },
+                { type: 'folder', name: 'Windows 2000', contents: 'Windows 2000' },
+                { type: 'folder', name: 'Windows XP', contents: 'Windows XP' },
+                { type: 'folder', name: 'Windows Server 2003', contents: 'Windows Server 2003' },
+                { type: 'folder', name: 'Windows Vista', contents: 'Windows Vista' },
+                { type: 'file', name: 'Windows Home Server 2007', url: 'https://www.123865.com/s/UjR9-HrM5d?pwd=DuM1#' },
+                { type: 'folder', name: 'Windows Server 2008', contents: 'Windows Server 2008' },
+                { type: 'folder', name: 'Windows 7', contents: 'Windows 7' },
+                { type: 'file', name: 'Windows Server 2008 R2', url: 'ed2k://|file|cn_windows_server_2008_r2_standard_enterprise_datacenter_and_web_with_sp1_x64_dvd_617598.iso|3368839168|D282F613A80C2F45FF23B79212A3CF67|/' },
+                { type: 'file', name: 'Windows Home Server 2011', url: 'ed2k://|file|en_server_install_disc_windows_home_server_2011_x64_dvd_658487.iso|4305752064|E6FE46CC66A19A92D8BD4DCBB77108EB|/' },
+                { type: 'folder', name: 'Windows 8', contents: 'Windows 8' },
+                { type: 'file', name: 'Windows Server 2012', url: 'ed2k://|file|cn_windows_server_2012_x64_dvd_915588.iso|3826081792|6A56281311F9FE6973F66CF36E2F50BE|/' },
+                { type: 'folder', name: 'Windows 8.1', contents: 'Windows 8.1' },
+                { type: 'file', name: 'Windows Server 2012 R2', url: 'ed2k://|file|cn_windows_server_2012_r2_with_update_x64_dvd_6052725.iso|5545705472|121EC13B53882E501C1438237E70810D|/' },
+                { type: 'file', name: 'Windows Server 2012 R2 Essentials', url: 'ed2k://|file|cn_windows_server_2012_r2_essentials_with_update_x64_dvd_6052796.iso|5201313792|C6E9486A9364E9A918830940EF5A1946|/' },
+                { type: 'folder', name: 'Windows 10', contents: 'Windows 10' },
+                { type: 'folder', name: 'Windows 11', contents: 'Windows 11' },
+                { type: 'folder', name: 'Windows服务器', contents: 'Windows服务器' }
+            ],
+            'Windows服务器': [
+                { type: 'file', name: 'Windows Server 2016', url: 'ed2k://|file|cn_windows_server_2016_updated_feb_2018_x64_dvd_11636703.iso|6294265856|4077CEBEBB40AFA5A66017D2EC7A9CD5|/' },
+                { type: 'file', name: 'Windows Server 2016 Essentials', url: 'ed2k://|file|cn_windows_server_2016_essentials_x64_dvd_9327779.iso|4902592512|4693ECE5FEEDE3FE349FC9E7AB467CE4|/' },
+                { type: 'file', name: 'Windows Server 2019', url: 'ed2k://|file|cn_windows_server_2019_updated_july_2020_x64_dvd_2c9b67da.iso|5675251712|19AE348F0D321785007D95B7D2FAF320|/' },
+                { type: 'file', name: 'Windows Server 2019 Essentials', url: 'ed2k://|file|cn_windows_server_2019_essentials_x64_dvd_5b386b0b.iso|4836911104|CBA4E3F0C66107AD6B64E4DA077D004F|/' },
+                { type: 'file', name: 'Windows Server 2022', url: 'ed2k://|file|zh-cn_windows_server_2022_updated_sep_2024_x64_dvd_cab4e960.iso|6155229184|3B389D2652259B8BA29E4736E701616A|/' },
+                { type: 'file', name: 'Windows Server 2025', url: 'ed2k://|file|zh-cn_windows_server_2025_updated_sep_2025_x64_dvd_6d1ad20d.iso|7748349952|FF3A12C9E1E1286A4590B2313D3286F6|/' }
+            ],
+            'Windows 8': [
+                { type: 'file', name: 'Windows 8 32位', url: 'ed2k://|file|cn_windows_8_x86_dvd_915414.iso|2679801856|9AF10141BFD61BC66D9D6459758D7749|/' },
+                { type: 'file', name: 'Windows 8企业版 32位', url: 'ed2k://|file|cn_windows_8_enterprise_x86_dvd_917682.iso|2597502976|7B6541942A16EB54BC81E84558DF09DF|/' },
+                { type: 'file', name: 'Windows 8 64位', url: 'ed2k://|file|cn_windows_8_x64_dvd_915407.iso|3652950016|5C7F8C212BD3A1827866563773A431C2|/' },
+                { type: 'file', name: 'Windows 8 企业版 64位', url: 'ed2k://|file|cn_windows_8_enterprise_x64_dvd_917570.iso|3560837120|8CAE8064C4B8F9CD84941B4FF4A34722|/' },
+                { type: 'file', name: 'Windows 8 32位精简版', url: 'https://www.123865.com/s/UjR9-pKM5d?pwd=ZnQz#' }
+            ],
+            'Windows XP': [
+                { type: 'file', name: 'Windows XP家庭版', url: 'ed2k://|file|zh-hans_windows_xp_home_with_service_pack_3_x86_cd_x14-92408.iso|611794944|81DC0766DFB4082E18F1985D535C14D6|/' },
+                { type: 'file', name: 'Windows XP专业版', url: 'ed2k://|file|zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso|630239232|CD0900AFA058ACB6345761969CBCBFF4|/' },
+                { type: 'file', name: 'Windows XP VL', url: 'ed2k://|file|zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-74070.iso|630237184|EC51916C9D9B8B931195EE0D6EE9B40E|/' },
+                { type: 'file', name: 'Windows XP 64位', url: 'https://www.123865.com/s/UjR9-jWM5d?pwd=yV6p#' },
+                { type: 'file', name: 'Windows Embedded POSReady 2009', url: 'https://www.microsoft.com/en-gb/download/details.aspx?id=11196' }
+            ],
+            'Windows Server 2003': [
+                { type: 'file', name: 'Windows Server 2003 R2 标准版', url: 'https://www.123865.com/s/UjR9-HCM5d?pwd=4X4b#' },
+                { type: 'file', name: 'Windows Server 2003 R2 标准版64位', url: 'https://www.123865.com/s/UjR9-9CM5d?pwd=QU7S#' },
+                { type: 'file', name: 'Windows Server 2003 R2企业版', url: 'https://www.123865.com/s/UjR9-ACM5d?pwd=q9Tq#' },
+                { type: 'file', name: 'Windows Server 2003 R2企业版64位', url: 'https://www.123865.com/s/UjR9-QCM5d?pwd=W7Vv#' }
+            ],
+            'Windows Vista': [
+                { type: 'file', name: 'Windows Vista 32位', url: 'ed2k://|file|cn_windows_vista_with_sp2_x86_dvd_x15-36285.iso|3078893568|F50709974F03C63BB41B5CA0D406160D|/' },
+                { type: 'file', name: 'Windows Vista企业版 32位', url: 'ed2k://|file|cn_windows_vista_enterprise_with_sp2_x86_dvd_x15-40257.iso|2348410880|A567A6C970038233C0B2B7F130ADEF23|/' },
+                { type: 'file', name: 'Windows Vista 64位', url: 'ed2k://|file|cn_windows_vista_with_sp2_x64_dvd_x15-36322.iso|3817512960|3719CEC49ECC2D73FCF7AF152A42049A|/' },
+                { type: 'file', name: 'Windows Vista企业版 64位', url: 'ed2k://|file|cn_windows_vista_with_sp2_x64_dvd_x15-36322.iso|3817512960|3719CEC49ECC2D73FCF7AF152A42049A|/' }
+            ],
+            'Windows Server 2008': [
+                { type: 'file', name: 'Windows Web Server 2008 32位', url: 'ed2k://|file|cn_windows_web_server_2008_with_sp2_x86_dvd_x15-51050.iso|1860190208|EBEA302ED2A76C4B435697F321E65804|/' },
+                { type: 'file', name: 'Windows Web Server 2008 64位', url: 'ed2k://|file|cn_windows_web_server_2008_with_sp2_x64_dvd_x15-51046.iso|2495262720|BC46231E88E87ED9D7A307C7BEB94D89|/' },
+                { type: 'file', name: 'Windows Server 2008 32位', url: 'ed2k://|file|cn_windows_server_standard_enterprise_and_datacenter_with_sp2_x86_dvd_x15-41045.iso|2190057472|E93B029C442F19024AA9EF8FB02AC90B|/' },
+                { type: 'file', name: 'Windows Server 2008 64位', url: 'ed2k://|file|cn_windows_server_2008_standard_enterprise_and_datacenter_with_sp2_x64_dvd_x15-41319.iso|2952992768|5F2CA73C9DA296CB05E7C0319F7D0E62|/' }
+            ],
+            'Windows 7': [
+                { type: 'file', name: 'Windows 7 32位', url: 'https://www.123865.com/s/UjR9-drM5d?pwd=Ef7i#' },
+                { type: 'file', name: 'Windows 7 64位', url: 'https://www.123865.com/s/UjR9-3rM5d?pwd=Y93l#' },
+                { type: 'file', name: 'Windows 7 64位精简版', url: 'https://www.123865.com/s/UjR9-oKM5d?pwd=Q04B#' },
+                { type: 'file', name: 'Windows Thin PC 32位', url: 'ed2k://|file|en_windows_thin_pc_x86_697681.iso|1576980480|2D0E6A048EB3F314F556B4F0834A95E2|/' }
+            ],
+            'Windows 8.1': [
+                { type: 'file', name: 'Windows 8.1 32位', url: 'ed2k://|file|cn_windows_8_1_x86_dvd_2707237.iso|3037507584|424D556E2D1C7C3B28510825E6E9D5A4|/' },
+                { type: 'file', name: 'Windows 8.1企业版 32位', url: 'ed2k://|file|cn_windows_8_1_enterprise_x86_dvd_2971901.iso|2970537984|6B73F90418E9C5248C0D9B80D789492A|/' },
+                { type: 'file', name: 'Windows 8.1 64位', url: 'ed2k://|file|cn_windows_8_1_x64_dvd_2707237.iso|3800313856|145C3B82D35C2C65A00FDB07277A7096|/' },
+                { type: 'file', name: 'Windows 8.1企业版 64位', url: 'ed2k://|file|cn_windows_8_1_enterprise_x64_dvd_2971907.iso|3734063104|13CE3C2D910B69F73D48E3F2C5373D4F|/' },
+                { type: 'file', name: 'Windows Embedded 8.1', url: 'https://www.microsoft.com/zh-cn/download/details.aspx?id=40745' }
+            ],
+            'Windows 10': [
+                { type: 'folder', name: 'Windows 10 1507-22H2', contents: 'Windows 10 1507-22H2' },
+                { type: 'folder', name: 'Windows 10长期服务版', contents: 'Windows 10长期服务版' }
+            ],
+            'Windows 10 1507-22H2': [
+                { type: 'file', name: 'Windows 10 1507 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_x86_dvd_6846962.iso|3100794880|B605D57635502A46B86ACC73764CCD9A|/' },
+                { type: 'file', name: 'Windows 10 1507 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_x86_dvd_6847858.iso|3097344000|E65D0B95FC75EC17FA6E72DC7433B46F|/' },
+                { type: 'file', name: 'Windows 10 1507 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_x86_dvd_6846431.iso|3233482752|B5C706594F5DC697B2A098420C801112|/' },
+                { type: 'file', name: 'Windows 10 1507 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_x64_dvd_6846957.iso|4162242560|3F657E387CD65FE7BA69DACAAE0E3510|/' },
+                { type: 'file', name: 'Windows 10 1507 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_x64_dvd_6847843.iso|4159854592|50A2126871A73D48FAE49D7D928D5343|/' },
+                { type: 'file', name: 'Windows 10 1507 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_x64_dvd_6848463.iso|4303300608|94FD861E82458005A9CA8E617379856A|/' },
+                { type: 'file', name: 'Windows 10 1511 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1511_x86_dvd_7224798.iso|3055464448|9D08B18C19AB307248CAB605D19475D9|/' },
+                { type: 'file', name: 'Windows 10 1511 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_version_1511_x86_dvd_7223795.iso|3057567744|3A9BE18EEFCE9A31B6C93AA710DE5B49|/' },
+                { type: 'file', name: 'Windows 10 1511 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1511_x86_dvd_7223635.iso|3175995392|55D8EF251EEF617DE4D69B54E17B3625|/' },
+                { type: 'file', name: 'Windows 10 1511 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1511_x64_dvd_7224788.iso|4048609280|A9B684D56B2DC9D43E19ACAA857D35DC|/' },
+                { type: 'file', name: 'Windows 10 1511 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_version_1511_x64_dvd_7223792.iso|4051984384|C02180B4599239E5F7B9A7FE18B1C89E|/' },
+                { type: 'file', name: 'Windows 10 1511 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1511_x64_dvd_7223622.iso|4187224064|FE3F221D193FEF02627F7F8CF0041BB3|/' },
+                { type: 'file', name: 'Windows 10 1607 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1607_updated_jul_2016_x86_dvd_9059597.iso|3100624896|0E1580E308D316A8648B0BF58D5CDEE2|/' },
+                { type: 'file', name: 'Windows 10 1607 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_version_1607_updated_jul_2016_x86_dvd_9056381.iso|3103516672|BA95618BB3D14C0B91A7D6D2518DCCFC|/' },
+                { type: 'file', name: 'Windows 10 1607 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1607_updated_jul_2016_x86_dvd_9060050.iso|3275581440|006F76229DB61ADA1D8E49DD4A6A0A5D|/' },
+                { type: 'file', name: 'Windows 10 1607 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1607_updated_jul_2016_x64_dvd_9057083.iso|4149981184|EFCB9D522DAA0C6A7BF3A5464C65DCBC|/' },
+                { type: 'file', name: 'Windows 10 1607 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9056220.iso|4150953984|AD0737D5F182082C37E6D1DB7CCDBB77|/' },
+                { type: 'file', name: 'Windows 10 1607 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1607_updated_jul_2016_x64_dvd_9056935.iso|4347183104|35EA5DB0F3BB714F5CE0740FB89D82D1|/' },
+                { type: 'file', name: 'Windows 10 1703 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1703_updated_june_2017_x86_dvd_10721462.iso|3737954304|9DF7203BD15FF86CD381D9C998462C78|/' },
+                { type: 'file', name: 'Windows 10 1703 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_version_1703_updated_june_2017_x86_dvd_10721047.iso|3734099968|69030CC7AC346DE4C3E9DE2526B213BE|/' },
+                { type: 'file', name: 'Windows 10 1703 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1703_updated_june_2017_x86_dvd_10725413.iso|4344467456|B3A695DA4BB0025696F168745E372BBE|/' },
+                { type: 'file', name: 'Windows 10 1703 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1703_updated_june_2017_x64_dvd_10720588.iso|4959832064|1BE4CE1BF03E20D088AD79231B133478|/' },
+                { type: 'file', name: 'Windows 10 1703 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_version_1703_updated_june_2017_x64_dvd_10720997.iso|4943917056|EC41C7986E39B42C028B680A0F139278|/' },
+                { type: 'file', name: 'Windows 10 1703 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1703_updated_june_2017_x64_dvd_10724850.iso|5741144064|7717C389428734009E0350A1BB8F2508|/' },
+                { type: 'file', name: 'Windows 10 1709 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multi-edition_version_1709_updated_sept_2017_x86_dvd_100090805.iso|3551899648|6C24A796B66CDA6D909508A16C74B406|/' },
+                { type: 'file', name: 'Windows 10 1709 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multi-edition_version_1709_updated_sept_2017_x64_dvd_100090804.iso|4740610048|37051C54894776826823DAEBDD03F1DC|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1803(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1803_updated_march_2018_x86_dvd_12063452.iso|3480692736|0EC3C40EF13D772798209981F18B6A5D|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1803(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1803_updated_march_2018_x64_dvd_12063766.iso|4714162176|FB8C05DE594CD7E58D88993652DD2102|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1809(x86)', url: 'ed2k://|file|cn_windows_10_consumer_edition_version_1809_updated_sept_2018_x86_dvd_c904d6c8.iso|3564730368|B31577E3A3825925D4D7972457D5A264|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1809(x64)', url: 'ed2k://|file|cn_windows_10_consumer_edition_version_1809_updated_sept_2018_x64_dvd_051b7719.iso|4808400896|B740D15C0A6056F4955A37792AB92501|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1903(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1903_x86_dvd_44b77216.iso|3557466112|926D3E6D2503D0E8CB4C8599C8DEC58F|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1903(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1903_x64_dvd_8f05241d.iso|4905476096|F28FDC23DA34D55BA466BFD6E91DD311|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1909(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1909_x86_dvd_08dd0d3c.iso|3859558400|40991568D016CCBAEE1E67CD38FAABE8|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1909(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1909_x64_dvd_76365bf8.iso|5381154816|6A56DE112B164EC054D1104C53F8F10B|/' },
+                { type: 'file', name: 'Windows 10(消费者版)20H1(x86)', url: 'magnet:?xt=urn:btih:68D043192FA8B9C80C4757D4CD459184338E8BA2&dn=cn_windows_10_consumer_editions_version_2004_x86_dvd_f9233032.iso&xl=3717070848' },
+                { type: 'file', name: 'Windows 10(消费者版)20H1(x64)', url: 'magnet:?xt=urn:btih:75C53FC59E677E355327E73E3296F8848F90A538&dn=cn_windows_10_consumer_editions_version_2004_x64_dvd_0c2eefdb.iso&xl=5634521088' },
+                { type: 'file', name: 'Windows 10(消费者版)20H2(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_20h2_x86_dvd_a66fccd6.iso|4467089408|79F2990664D883F34177BE57130C79A6|/' },
+                { type: 'file', name: 'Windows 10(消费者版)20H2(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_20h2_x64_dvd_d4f7a83e.iso|6044921856|C71BFC9033EC0C9510E51744833AD84A|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H1(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_21h1_x86_dvd_5f857a50.iso|4199946240|2A21FDB6FFB903A0EF594A9F0FBFAEDB|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H1(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_21h1_x64_dvd_1baf479d.iso|5807677440|E53960C7CAD323F60442A8AB9C269C2E|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H2(x86)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_21h2_x86_dvd_511fdc1c.iso|4237803520|A4A26EEBD9A094F971529F71C382868E|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H2(x64)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_21h2_x64_dvd_cf28838e.iso|5859952640|8B3EDE1AEEEAFAB777F6DFB46960ECE2|/' },
+                { type: 'file', name: 'Windows 10(消费者版)22H2(x86)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_x86_dvd_fa2c4567.iso|4352614400|8594D74C1E1D983E8386819AAE311668|/' },
+                { type: 'file', name: 'Windows 10(消费者版)22H2(x64)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_x64_dvd_139de365.iso|6078826496|4EA34F24DB4F1EE695A608B39C369167|/' }
+            ],
+            'Windows 10长期服务版': [
+                { type: 'file', name: 'Windows 10 Enterprise 2015 LTSB (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_2015_ltsb_x86_dvd_6848426.iso|2887350272|681C2F80A511FCEC73B7A5D878D4D9EC|/' },
+                { type: 'file', name: 'Windows 10 Enterprise 2015 LTSB (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_2015_ltsb_x64_dvd_6848425.iso|3907538944|38E47AB92B6D97DF2BE602BBC9969D34|/' },
+                { type: 'file', name: 'Windows 10 Enterprise 2016 LTSB (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_2016_ltsb_x86_dvd_9057089.iso|2817034240|67C3865D03E765BDD4845BA2CB7649F8|/' },
+                { type: 'file', name: 'Windows 10 Enterprise 2016 LTSB (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_2016_ltsb_x64_dvd_9060409.iso|3821895680|FF17FF2D5919E3A560151BBC11C399D1|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2019 (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_ltsc_2019_x86_dvd_1814dbab.iso|3196803072|2D39C54A2E99BAC308191C74A15B3237|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2019 (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso|4478906368|E7C526499308841A4A6D116C857DB669|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2021 (x86)', url: 'ed2k://|file|SW_DVD9_WIN_ENT_LTSC_2021_32BIT_ChnSimp_MLF_X22-84401.ISO|3621132288|F67BB339ADFEFCF6ED22400EAACBD068|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2021 (x64)', url: 'ed2k://|file|SW_DVD9_WIN_ENT_LTSC_2021_64BIT_ChnSimp_MLF_X22-84402.ISO|5044211712|1555B7DCA052B5958EE68DB58A42408D|/' }
+            ],
+            'Windows 11': [
+                { type: 'file', name: 'Windows 11 消费者版21H2', url: 'ed2k://|file|zh-cn_windows_11_consumer_editions_x64_dvd_904f13e4.iso|5517273088|DFD1AE88E36516B87382FC3D3D3F46AD|/' },
+                { type: 'file', name: 'Windows 11消费者版22H2', url: 'ed2k://|file|zh-cn_windows_11_consumer_editions_version_22h2_x64_dvd_59cfe6ee.iso|5517127680|C48C34A0CF65D363B68295BDD5A89252|/' },
+                { type: 'file', name: 'Windows 11消费者版23H2', url: 'ed2k://|file|zh-cn_windows_11_consumer_editions_version_23h2_x64_dvd_91207780.iso|6714650624|5E927EF9FA65D78D1898213281CB3757|/' },
+                { type: 'file', name: 'Windows 11消费者版24H2', url: 'ed2k://|file|zh-cn_windows_11_consumer_editions_version_24h2_x64_dvd_bfc0d79b.iso|5829044224|EF683BDE621E6BC2A96AB2ACEC626620|/' },
+                { type: 'file', name: 'Windows 11消费者版25H2', url: 'https://software-static.download.prss.microsoft.com/dbazure/888969d5-f34g-4e03-ac9d-1f9786c66749/26200.6584.250915-1905.25h2_ge_release_svc_refresh_CLIENT_CONSUMER_x64FRE_zh-cn.iso' },
+                { type: 'folder', name: 'Windows 11长期服务版', contents: 'Windows 11长期服务版' }
+            ],
+            'Windows NT': [
+                { type: 'folder', name: 'Windows NT 3.51', contents: 'Windows NT 3.51' },
+                { type: 'file', name: 'Windows NT 4.0 Server', url: 'https://www.123865.com/s/UjR9-QWM5d?pwd=5hNQ#' },
+                { type: 'file', name: 'Windows NT 4.0 Workstation', url: 'https://www.123865.com/s/UjR9-EWM5d?pwd=kSCo#' },
+                { type: 'file', name: 'Windows NT 4.0 Small Business Server', url: 'https://www.123865.com/s/UjR9-kWM5d?pwd=nwGP#' }
+            ],
+            'Windows NT 3.51': [
+                { type: 'file', name: 'Windows NT 3.51 Server', url: 'https://www.123pan.com/s/UjR9-AsM5d' },
+                { type: 'file', name: 'Windows NT Workstation 3.51', url: 'https://www.123865.com/s/UjR9-9WM5d?pwd=Lsyn#' }
+            ],
+            'Windows 2000': [
+                { type: 'file', name: 'Windows 2000 Pro', url: 'ed2k://|file|ZRMPSEL_CN.iso|402690048|00D1BDA0F057EDB8DA0B29CF5E188788|/' },
+                { type: 'file', name: 'Windows 2000 Server', url: 'https://www.123865.com/s/UjR9-pWM5d?pwd=0tDk#' },
+                { type: 'file', name: 'Windows 2000 Advanced Server', url: 'https://www.123865.com/s/UjR9-fWM5d?pwd=h7Qr#' },
+                { type: 'file', name: 'Windows 2000 Datacenter Server', url: 'https://www.123865.com/s/UjR9-aWM5d?pwd=coH2#' }
+            ],
+            'Windows 1.0': [
+                { type: 'file', name: 'MS-DOS', url: 'https://winworldpc.com/download/49c3a35d-1245-0911-c3a7-c29d25525400' },
+                { type: 'file', name: 'Windows 1.0', url: 'https://winworldpc.com/product/windows-10/101' }
+            ],
+            'Windows 2.0': [
+                { type: 'file', name: 'MS-DOS', url: 'https://winworldpc.com/download/49c3a35d-1245-0911-c3a7-c29d25525400' },
+                { type: 'file', name: 'Windows 2.0', url: 'https://winworldpc.com/product/windows-20/20' }
+            ],
+            'Windows 3.0': [
+                { type: 'file', name: 'MS-DOS', url: 'https://winworldpc.com/download/49c3a35d-1245-0911-c3a7-c29d25525400' },
+                { type: 'file', name: 'Windows 3.0', url: 'https://winworldpc.com/product/windows-30/30' }
+            ],
+            'Windows 3.1': [
+                { type: 'file', name: 'MS-DOS', url: 'https://winworldpc.com/download/49c3a35d-1245-0911-c3a7-c29d25525400' },
+                { type: 'file', name: 'Windows 3.1', url: 'https://winworldpc.com/product/windows-31/31' }
+            ],
+            'Windows 3.11': [
+                { type: 'file', name: 'MS-DOS', url: 'https://winworldpc.com/download/49c3a35d-1245-0911-c3a7-c29d25525400' },
+                { type: 'file', name: 'Windows 3.11', url: 'https://www.123865.com/s/UjR9-mrM5d?pwd=jEXn#' }
+            ],
+            'Windows 3.2': [
+                { type: 'file', name: 'MS-DOS', url: 'https://winworldpc.com/download/49c3a35d-1245-0911-c3a7-c29d25525400' },
+                { type: 'file', name: 'Windows 3.2', url: 'https://winworldpc.com/product/windows-32/32' }
+            ],
+            'Windows 11长期服务版': [
+                { type: 'file', name: 'Windows 11 Enterprise LTSC 2024 (x64)', url: 'ed2k://|file|zh-cn_windows_11_enterprise_ltsc_2024_x64_dvd_2b22a83f.iso|6061058048|C36F30B361C29D224B8D168957A02BF1|/' }
+            ]
+        };
+        function showFolderContent(folderName) {
+            const navPath = document.getElementById('navPath');
+            const backButton = document.getElementById('backButton');
+            // 控制返回按钮的显示：只在子文件夹中显示（currentPath长度大于1）
+            backButton.style.display = currentPath.length > 1 ? 'inline-block' : 'none';
+            
+            navPath.innerHTML = '';
+            if (currentPath.length === 1) {
+                navPath.style.textAlign = 'center';
+                navPath.style.width = '100%';
+            } else {
+                navPath.style.textAlign = 'left';
+                navPath.style.width = 'auto';
+            }
+            currentPath.forEach((path, index) => {
+                const pathElement = document.createElement('span');
+                if (index === currentPath.length - 1) {
+                    pathElement.className = 'text-gray-800 font-medium';
+                    pathElement.textContent = (currentPath.length === 1 && index === 0) ? '欢迎回来' : path;
+                } else {
+                    pathElement.className = 'text-primary cursor-pointer hover:underline';
+                    pathElement.textContent = path;
+                    pathElement.onclick = () => navigateToPath(index);
+                }
+                navPath.appendChild(pathElement);
+                if (index < currentPath.length - 1) {
+                    const separator = document.createElement('span');
+                    separator.className = 'mx-1 text-gray-400';
+                    separator.textContent = '>';
+                    navPath.appendChild(separator);
+                }
+            });
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            if (!fileSystem[folderName]) {
+                fileList.innerHTML = '<div class="px-4 py-3 text-center text-gray-500">文件夹不存在</div>';
+                return;
+            }
+            const contents = fileSystem[folderName];
+            contents.forEach(item => {
+                if (item.type === 'folder') {
+                    fileList.appendChild(createFolderItem(item.name));
+                } else if (item.type === 'file') {
+                    fileList.appendChild(createFileItem(item));
+                }
+            });
+        }
+        function createFolderItem(folderName) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('i');
+            icon.className = 'fa fa-folder text-yellow-500 mr-3';
+            const name = document.createElement('span');
+            name.className = 'folder-text';
+            name.textContent = folderName;
+            name.onclick = () => {
+                currentPath.push(folderName);
+                showFolderContent(folderName);
+            };
+            leftSection.appendChild(icon);
+            leftSection.appendChild(name);
+            div.appendChild(leftSection);
+            return div;
+        }
+        function createFileItem(file) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('i');
+            icon.className = 'fa fa-file-o text-blue-500 mr-3';
+            const isSpecialLink = file.url.startsWith('ed2k://') || file.url.startsWith('magnet:?xt');
+            if (isSpecialLink) {
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'text-gray-700 hover:text-primary hover:underline';
+                nameSpan.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(nameSpan);
+                div.appendChild(leftSection);
+                div.addEventListener('click', function() {
+                    const isAndroid = /Android/i.test(navigator.userAgent);
+                    async function checkAndCopyText(text) {
+                        try {
+                            if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                                try {
+                                    const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                    if (permissionStatus.state === 'denied') {
+                                        showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                        return;
+                                    }
+                                } catch (permissionError) {
+                                    console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                                }
+                            }
+                            await navigator.clipboard.writeText(text);
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                            tooltip.textContent = '链接已复制到剪贴板';
+                            document.body.appendChild(tooltip);
+                            setTimeout(function() {
+                                tooltip.remove();
+                            }, 3000);
+                        } catch (err) {
+                            console.error('复制失败: ', err);
+                            showErrorTooltip('复制失败，请手动复制链接');
+                        }
+                    }
+                    function showErrorTooltip(message) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = message;
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    }
+                    checkAndCopyText(file.url);
+                });
+            } else {
+                const a = document.createElement('a');
+                a.href = file.url;
+                a.target = '_blank';
+                a.className = 'text-gray-700 hover:text-primary hover:underline';
+                a.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(a);
+                div.appendChild(leftSection);
+                div.addEventListener('click', function(event) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                    tooltip.textContent = '正在下载...';
+                    document.body.appendChild(tooltip);
+                    setTimeout(function() {
+                        tooltip.remove();
+                    }, 3000);
+                });
+            }
+            return div;
+        }
+        function goBack() {
+            if (currentPath.length > 1) {
+                currentPath.pop();
+                showFolderContent(currentPath[currentPath.length - 1]);
+            }
+        }
+        function navigateToPath(index) {
+            if (index < currentPath.length - 1) {
+                currentPath = currentPath.slice(0, index + 1);
+                showFolderContent(currentPath[currentPath.length - 1]);
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                showFolderContent(currentPath[0]);
+            });
+        } else {
+            showFolderContent(currentPath[0]);
+        }
+    </script>
+
+    <div id="htmer_time">6年5月23天16时44分22秒</div>
+    <div class="player-container">
+        <div class="player-wrapper">
+            <div id="regularPlayer1">
+                 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="320" height="86" 
+                        data-src="https://music.163.com/outchain/player?type=2&id=1306602392&auto=0&height=66">
+                 </iframe>
+              </div>
+              <div id="regularPlayer2">
+                 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="320" height="65" 
+                        data-src="https://i.y.qq.com/n2/m/outchain/player/index.html?songid=216513687&songtype=0&autoplay=0">
+                 </iframe>
+              </div>
+              <div id="springFestivalPlayer">
+                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="320" height="65" 
+                         data-src="https://i.y.qq.com/n2/m/outchain/player/index.html?songid=266919674&songtype=0&autoplay=0">
+                  </iframe>
+              </div>
+              <div id="october7thPlayer">
+                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="320" height="65" 
+                         data-src="https://i.y.qq.com/n2/m/outchain/player/index.html?songid=264179268&songtype=0&autoplay=0">
+                  </iframe>
+              </div>
+              <div id="nationalDayMusicPlayer">
+              </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-row">
+                <img src="https://jsd.nn.ci/gh/FuibaFuyu/fuibafuyu.github.io/icon/icon-48.png" alt="冬優ちゃんの小窝" class="footer-icon">
+                <a href="https://fuibafuyu.net/" target="_blank" class="footer-link highlight">冬優ちゃんの小窝</a>
+            </div>
+            <div class="footer-row">
+                <img src="https://ys.mihoyo.com/main/favicon.ico" alt="原神" class="footer-icon">
+                <a href="https://ys.mihoyo.com/" target="_blank" class="footer-link">原神</a>
+                <img src="https://fastcdn.mihoyo.com/static-resource-v2/2025/08/29/169b406a64fb5a3447e474ce6714a1a5_5527692079822777595.ico" alt="崩坏.因缘精灵" class="footer-icon">
+                <a href="https://yyjl.mihoyo.com" target="_blank" class="footer-link">崩坏.因缘精灵</a>
+            </div>
+            <div class="footer-row">
+                <img src="https://space.bilibili.com/favicon.ico" alt="哔哩哔哩" class="footer-icon">
+                <a href="https://space.bilibili.com/475548014" target="_blank" class="footer-link">哔哩哔哩</a>
+                <img src="https://cdn.aixifan.com/ico/favicon.ico" alt="AcFun" class="footer-icon">
+                <a href="https://www.acfun.cn/u/72249484" target="_blank" class="footer-link">AcFun</a>
+            </div>
+        </div>
+    </div>
+    <div class="ICP-info">
+        <span class="ICP-info-content">
+            <img src="https://icp.gov.moe/images/ico64.png" class="ICP-icon">
+            <a href="https://icp.gov.moe/?keyword=20259508" target="_blank" class="ICP-link">萌ICP备20259508号</a>
+        </span>
+    </div>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/festival.js" defer></script>
+    <script src="assets/js/utils.js" defer></script>
+<script src="live2d-widget/dist/autoload.js"></script>
+</body>
+</html>
+
+
+
