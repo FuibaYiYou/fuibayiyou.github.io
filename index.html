@@ -269,9 +269,12 @@
             'Windows 10 22H2': [
                 { type: 'file', name: 'Windows 10(消费者版)22H2(x86)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_x86_dvd_fa2c4567.iso|4352614400|8594D74C1E1D983E8386819AAE311668|/' },
                 { type: 'file', name: 'Windows 10(消费者版)22H2(x64)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_x64_dvd_139de365.iso|6078826496|4EA34F24DB4F1EE695A608B39C369167|/' },
-                { type: 'code', name: 'Windows 10 22H2 ESU注册命令', title: 'Windows 10 22H2 ESU注册(注册表)命令提示符(管理员)', copyText: '复制', codes: [
-                    'reg add "HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\ConsumerESU" /v "ESUEligibility" /t REG_DWORD /d 2 /f',
-                    'reg add "HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\ConsumerESU" /v "ESUEligibilityResult" /t REG_DWORD /d 1 /f'
+                { type: 'code', name: 'Windows 10 22H2 ESU注册命令', title: 'Windows 10 22H2 ESU注册表', copyText: '复制', codes: [
+                    'Windows Registry Editor Version 5.00',
+                    '',
+                    '[HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\ConsumerESU]',
+                    '"ESUEligibility"=dword:00000002',
+                    '"ESUEligibilityResult"=dword:00000001'
                 ] }
             ]
         };
