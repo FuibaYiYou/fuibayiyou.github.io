@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>依兔酱</title>
+    <title>依兔</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/main.css">
@@ -100,7 +100,8 @@
                 { type: 'file', name: 'Windows Server 2012 R2 Essentials', url: 'ed2k://|file|cn_windows_server_2012_r2_essentials_with_update_x64_dvd_6052796.iso|5201313792|C6E9486A9364E9A918830940EF5A1946|/' },
                 { type: 'folder', name: 'Windows 10', contents: 'Windows 10' },
                 { type: 'folder', name: 'Windows 11', contents: 'Windows 11' },
-                { type: 'folder', name: 'Windows服务器', contents: 'Windows服务器' }
+                { type: 'folder', name: 'Windows服务器', contents: 'Windows服务器' },
+                { type: 'folder', name: 'Windows精简版镜像', contents: 'Windows精简版镜像' }
             ],
             'Windows服务器': [
                 { type: 'file', name: 'Windows Server 2016', url: 'ed2k://|file|cn_windows_server_2016_updated_feb_2018_x64_dvd_11636703.iso|6294265856|4077CEBEBB40AFA5A66017D2EC7A9CD5|/' },
@@ -115,7 +116,6 @@
                 { type: 'file', name: 'Windows 8企业版 32位', url: 'ed2k://|file|cn_windows_8_enterprise_x86_dvd_917682.iso|2597502976|7B6541942A16EB54BC81E84558DF09DF|/' },
                 { type: 'file', name: 'Windows 8 64位', url: 'ed2k://|file|cn_windows_8_x64_dvd_915407.iso|3652950016|5C7F8C212BD3A1827866563773A431C2|/' },
                 { type: 'file', name: 'Windows 8 企业版 64位', url: 'ed2k://|file|cn_windows_8_enterprise_x64_dvd_917570.iso|3560837120|8CAE8064C4B8F9CD84941B4FF4A34722|/' },
-                { type: 'file', name: 'Windows 8 32位精简版', url: 'https://www.123865.com/s/UjR9-pKM5d?pwd=ZnQz#' }
             ],
             'Windows XP': [
                 { type: 'file', name: 'Windows XP家庭版', url: 'ed2k://|file|zh-hans_windows_xp_home_with_service_pack_3_x86_cd_x14-92408.iso|611794944|81DC0766DFB4082E18F1985D535C14D6|/' },
@@ -276,6 +276,15 @@
                     '"ESUEligibility"=dword:00000002',
                     '"ESUEligibilityResult"=dword:00000001'
                 ] }
+            ],
+            'Windows精简版镜像': [
+                { type: 'folder', name: 'Lopatkin精简', contents: 'Lopatkin精简' },
+                { type: 'file', name: 'Windows 7 64位', url: 'https://www.123865.com/s/UjR9-oKM5d?pwd=Q04B#' },
+                { type: 'file', name: 'Windows 11精简版', url: 'https://www.123865.com/s/UjR9-WHw5d?pwd=qvzx#' }
+            ],
+            'Lopatkin精简': [
+                { type: 'file', name: '百度网盘', url: 'https://pan.baidu.com/share/init?surl=zt5lB80KIR2F4U15xqKRsQ&pwd=X1nG' },
+                { type: 'file', name: '阿里云盘', url: 'https://www.aliyundrive.com/s/PyiqWTVjXxv' }
             ]
         };
         function showFolderContent(folderName) {
@@ -561,8 +570,6 @@
             <div class="footer-row">
                 <img src="https://ys.mihoyo.com/main/favicon.ico" alt="原神" class="footer-icon">
                 <a href="https://ys.mihoyo.com/" target="_blank" class="footer-link">原神</a>
-                <img src="https://fastcdn.mihoyo.com/static-resource-v2/2025/08/29/169b406a64fb5a3447e474ce6714a1a5_5527692079822777595.ico" alt="崩坏.因缘精灵" class="footer-icon">
-                <a href="https://yyjl.mihoyo.com" target="_blank" class="footer-link">崩坏.因缘精灵</a>
             </div>
             <div class="footer-row">
                 <img src="https://space.bilibili.com/favicon.ico" alt="哔哩哔哩" class="footer-icon">
@@ -581,7 +588,7 @@
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/festival.js" defer></script>
     <script src="assets/js/utils.js" defer></script>
-    <script src="live2d-widget/dist/autoload.js"></script>
+   <script src="live2d-widget/dist/autoload.js"></script>
 </body>
 </html>
 
