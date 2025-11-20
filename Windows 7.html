@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 7</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-2">
+                    <i id="backButton" class="fa fa-arrow-left back-button" onclick="window.location.href='index.html'"></i>
+                    <div id="navPath" class="text-sm font-medium text-gray-700">
+                        <span class="text-primary cursor-pointer hover:underline" onclick="window.location.href='index.html'">首页</span>
+                        <span class="mx-1 text-gray-400">></span>
+                        <span class="text-gray-800 font-medium">Windows 7</span>
+                    </div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100">
+                <!-- Windows 7 文件列表 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-drM5d?pwd=Ef7i#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows 7 32位</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-3rM5d?pwd=Y93l#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows 7 64位</a>
+                    </div>
+                </div>
+                
+                <!-- Windows Thin PC 文件夹定义 -->
+                <div class="px-4 py-3 bg-transparent border-l-4 border-blue-500 cursor-pointer" onclick="toggleFolder('thinPcFolder')">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fa fa-folder text-blue-500 mr-3"></i>
+                            <span class="text-gray-700 font-medium">Windows Thin PC</span>
+                        </div>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform duration-200 hidden" id="thinPcFolderIcon"></i>
+                    </div>
+                </div>
+                <div id="thinPcFolder" class="hidden">
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center ml-4">
+                            <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                            <a href="http://download.microsoft.com/download/8/6/1/8616D57C-1163-45FB-832A-15FA60571002/SP1/Chinese%20(Simplified)%20Language%20Pack%20-%20Windows%20Embedded%20Standard%207%20SP1/lp.cab" target="_blank" class="text-gray-700 hover:text-primary hover:underline">简体中文语言包</a>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center ml-4">
+                            <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                            <span class="text-gray-700 hover:text-primary hover:underline cursor-pointer" onclick="showInstallInstructions()">安装简体中文语言包</span>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center ml-4">
+                            <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                            <a href="http://download.microsoft.com/download/C/D/7/CD789C98-6C1A-43D6-87E9-F7FDE3806950/ThinPC_110415_EVAL_x86fre.iso" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Thin PC镜像</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                function toggleFolder(folderId) {
+                    const folder = document.getElementById(folderId);
+                    const icon = document.getElementById(folderId + 'Icon');
+                    
+                    if (folder.classList.contains('hidden')) {
+                        folder.classList.remove('hidden');
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        folder.classList.add('hidden');
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                }
+                
+                function showInstallInstructions() {
+                    const instructions = `
+1. 点击"简体中文语言包"下载语言包
+2. 按Windows开始键+R打开运行窗口
+3. 输入cmd同时按下Ctrl+Shift+Enter(回车键)以管理员身份运行
+4. 输入以下命令安装语言包。
+
+安装语言包
+dism /online /add-package /packagepath:D:\\lp.cab
+
+设置Windows 7简体中文启动菜单
+设置Windows简体中文启动微标
+bcdedit /set {current} locale zh-cn
+bcdboot %WinDir% /l zh-cn
+
+重启系统后在控制面板中设置中文为默认语言
+                    `;
+                    
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+                    modal.innerHTML = `
+                        <div class="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+                            <div class="p-4 border-b border-gray-200">
+                                <h3 class="text-lg font-semibold text-gray-800 text-center">Windows Thin PC 简体中文包的安装方法</h3>
+                            </div>
+                            <div class="p-4">
+                                <pre class="text-sm text-black whitespace-pre-wrap">${instructions}</pre>
+                            </div>
+                            <div class="p-4 border-t border-gray-200 flex justify-center">
+                                <button onclick="this.closest('.fixed').remove()" class="px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors">我知道了</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    
+                    modal.addEventListener('click', function(event) {
+                        if (event.target === modal) {
+                            modal.remove();
+                        }
+                    });
+                }
+                
+                document.addEventListener('DOMContentLoaded', function() {
+                    const fileItems = document.querySelectorAll('.file-item');
+                    
+                    fileItems.forEach(item => {
+                        const link = item.querySelector('a');
+                        if (link) {
+                            const href = link.getAttribute('href');
+                            
+                            if (href && (href.startsWith('ed2k://') || href.startsWith('magnet:?xt'))) {
+                                item.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    const isAndroid = /Android/i.test(navigator.userAgent);
+                                    
+                                    async function checkAndCopyText(text) {
+                                        try {
+                                            if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                                                try {
+                                                    const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                                    if (permissionStatus.state === 'denied') {
+                                                        showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                                        return;
+                                                    }
+                                                } catch (permissionError) {
+                                                    console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                                                }
+                                            }
+                                            await navigator.clipboard.writeText(text);
+                                            const tooltip = document.createElement('div');
+                                            tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                            tooltip.textContent = '链接已复制到剪贴板';
+                                            document.body.appendChild(tooltip);
+                                            setTimeout(function() {
+                                                tooltip.remove();
+                                            }, 3000);
+                                        } catch (err) {
+                                            console.error('复制失败: ', err);
+                                            showErrorTooltip('复制失败，请手动复制链接');
+                                        }
+                                    }
+                                    
+                                    function showErrorTooltip(message) {
+                                        const tooltip = document.createElement('div');
+                                        tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                        tooltip.textContent = message;
+                                        document.body.appendChild(tooltip);
+                                        setTimeout(function() {
+                                            tooltip.remove();
+                                        }, 3000);
+                                    }
+                                    
+                                    checkAndCopyText(href);
+                                });
+                            } else if (href && href.includes('123865.com')) {
+                                item.addEventListener('click', function(event) {
+                                    const tooltip = document.createElement('div');
+                                    tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                    tooltip.textContent = '正在下载...';
+                                    document.body.appendChild(tooltip);
+                                    setTimeout(function() {
+                                        tooltip.remove();
+                                    }, 3000);
+                                });
+                            } else {
+                                item.addEventListener('click', function(event) {
+                                    const tooltip = document.createElement('div');
+                                    tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                    tooltip.textContent = '正在下载...';
+                                    document.body.appendChild(tooltip);
+                                    setTimeout(function() {
+                                        tooltip.remove();
+                                    }, 3000);
+                                });
+                            }
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/festival.js" defer></script>
+</body>
+</html>

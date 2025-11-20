@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows服务器</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md rounded-lg overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-2">
+                    <i id="backButton" class="fa fa-arrow-left back-button" onclick="window.location.href='index.html'"></i>
+                    <div id="navPath" class="text-sm font-medium text-gray-700">
+                        <span class="text-primary cursor-pointer hover:underline" onclick="window.location.href='index.html'">首页</span>
+                        <span class="mx-1 text-gray-400">></span>
+                        <span class="text-gray-800 font-medium">Windows Server</span>
+                    </div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100">
+                <!-- Windows Server 2003 文件列表 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-HCM5d?pwd=4X4b#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2003 R2 标准版</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-9CM5d?pwd=QU7S#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2003 R2 标准版64位</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-ACM5d?pwd=q9Tq#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2003 R2企业版</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-QCM5d?pwd=W7Vv#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2003 R2企业版64位</a>
+                    </div>
+                </div>
+                <!-- Windows Home Server 2007 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-HrM5d?pwd=DuM1#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Home Server 2007</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2008 文件列表 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_web_server_2008_with_sp2_x86_dvd_x15-51050.iso|1860190208|EBEA302ED2A76C4B435697F321E65804|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Web Server 2008 32位</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_web_server_2008_with_sp2_x64_dvd_x15-51046.iso|2495262720|BC46231E88E87ED9D7A307C7BEB94D89|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Web Server 2008 64位</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_standard_enterprise_and_datacenter_with_sp2_x86_dvd_x15-41045.iso|2190057472|E93B029C442F19024AA9EF8FB02AC90B|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2008 32位</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2008_standard_enterprise_and_datacenter_with_sp2_x64_dvd_x15-41319.iso|2952992768|5F2CA73C9DA296CB05E7C0319F7D0E62|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2008 64位</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2008_r2_standard_enterprise_datacenter_and_web_with_sp1_x64_dvd_617598.iso|3368839168|D282F613A80C2F45FF23B79212A3CF67|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2008 R2</a>
+                    </div>
+                </div>
+                <!-- Windows Home Server 2011 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|en_server_install_disc_windows_home_server_2011_x64_dvd_658487.iso|4305752064|E6FE46CC66A19A92D8BD4DCBB77108EB|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Home Server 2011</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2012 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2012_x64_dvd_915588.iso|3826081792|6A56281311F9FE6973F66CF36E2F50BE|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2012</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2012 R2 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2012_r2_with_update_x64_dvd_6052725.iso|5545705472|121EC13B53882E501C1438237E70810D|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2012 R2</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2012 R2 Essentials 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2012_r2_essentials_with_update_x64_dvd_6052796.iso|5201313792|C6E9486A9364E9A918830940EF5A1946|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2012 R2 Essentials</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2016 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2016_updated_feb_2018_x64_dvd_11636703.iso|6294265856|4077CEBEBB40AFA5A66017D2EC7A9CD5|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2016</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2016 Essentials 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2016_essentials_x64_dvd_9327779.iso|4902592512|4693ECE5FEEDE3FE349FC9E7AB467CE4|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2016 Essentials</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2019 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2019_updated_july_2020_x64_dvd_2c9b67da.iso|5675251712|19AE348F0D321785007D95B7D2FAF320|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2019</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2019 Essentials 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|cn_windows_server_2019_essentials_x64_dvd_5b386b0b.iso|4836911104|CBA4E3F0C66107AD6B64E4DA077D004F|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2019 Essentials</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2022 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|zh-cn_windows_server_2022_updated_sep_2024_x64_dvd_cab4e960.iso|6155229184|3B389D2652259B8BA29E4736E701616A|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2022</a>
+                    </div>
+                </div>
+                <!-- Windows Server 2025 文件 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="ed2k://|file|zh-cn_windows_server_2025_updated_sep_2025_x64_dvd_6d1ad20d.iso|7748349952|FF3A12C9E1E1286A4590B2313D3286F6|/" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows Server 2025</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileItems = document.querySelectorAll('#fileList .file-item');
+            
+            fileItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (!link) return;
+                
+                const href = link.getAttribute('href');
+                
+                if (href.startsWith('ed2k://') || href.startsWith('magnet:?')) {
+                    item.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        
+                        const isAndroid = /Android/i.test(navigator.userAgent);
+                        
+                        async function checkAndCopyText(text) {
+                            try {
+                                if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                                    try {
+                                        const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                        if (permissionStatus.state === 'denied') {
+                                            showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                            return;
+                                        }
+                                    } catch (permissionError) {
+                                        console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                                    }
+                                }
+                                
+                                await navigator.clipboard.writeText(text);
+                                const tooltip = document.createElement('div');
+                                tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                tooltip.textContent = '链接已复制到剪贴板';
+                                document.body.appendChild(tooltip);
+                                setTimeout(function() {
+                                    tooltip.remove();
+                                }, 3000);
+                            } catch (err) {
+                                console.error('复制失败: ', err);
+                                showErrorTooltip('复制失败，请手动复制链接');
+                            }
+                        }
+                        
+                        function showErrorTooltip(message) {
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                            tooltip.textContent = message;
+                            document.body.appendChild(tooltip);
+                            setTimeout(function() {
+                                tooltip.remove();
+                            }, 3000);
+                        }
+                        
+                        checkAndCopyText(href);
+                    });
+                } 
+                else if (href.includes('123865.com')) {
+                    item.addEventListener('click', function(event) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = '正在下载...';
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    });
+                }
+                else {
+                    item.addEventListener('click', function(event) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = '正在下载...';
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/festival.js" defer></script>
+</body>
+</html>

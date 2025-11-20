@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 10</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+</head>
+<body style="background-image: url('img0.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md rounded-lg overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-2">
+                    <i id="backButton" class="fa fa-arrow-left back-button" onclick="goBack()" style="display: none;"></i>
+                    <div id="navPath" class="text-sm font-medium text-gray-700"></div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+        let currentPath = ['首页'];
+        const fileSystem = {
+            '首页': [
+                { type: 'link', name: 'Windows 10更新', url: 'https://esu.yiyoujiang.cn' },
+                { type: 'folder', name: 'Windows 10 1507-22H2', contents: 'Windows 10 1507-22H2' },
+                { type: 'folder', name: 'Windows 10长期服务版', contents: 'Windows 10长期服务版' }
+            ],
+            'Windows 10 1507-22H2': [
+                { type: 'file', name: 'Windows 10 1507 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_x86_dvd_6846962.iso|3100794880|B605D57635502A46B86ACC73764CCD9A|/' },
+                { type: 'file', name: 'Windows 10 1507 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_x86_dvd_6847858.iso|3097344000|E65D0B95FC75EC17FA6E72DC7433B46F|/' },
+                { type: 'file', name: 'Windows 10 1507 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_x86_dvd_6846431.iso|3233482752|B5C706594F5DC697B2A098420C801112|/' },
+                { type: 'file', name: 'Windows 10 1507 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_x64_dvd_6846957.iso|4162242560|3F657E387CD65FE7BA69DACAAE0E3510|/' },
+                { type: 'file', name: 'Windows 10 1507 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_x64_dvd_6847843.iso|4159854592|50A2126871A73D48FAE49D7D928D5343|/' },
+                { type: 'file', name: 'Windows 10 1507 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_x64_dvd_6848463.iso|4303300608|94FD861E82458005A9CA8E617379856A|/' },
+                { type: 'file', name: 'Windows 10 1511 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1511_x86_dvd_7224798.iso|3055464448|9D08B18C19AB307248CAB605D19475D9|/' },
+                { type: 'file', name: 'Windows 10 1511 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_version_1511_x86_dvd_7223795.iso|3057567744|3A9BE18EEFCE9A31B6C93AA710DE5B49|/' },
+                { type: 'file', name: 'Windows 10 1511 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1511_x86_dvd_7223635.iso|3175995392|55D8EF251EEF617DE4D69B54E17B3625|/' },
+                { type: 'file', name: 'Windows 10 1511 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1511_x64_dvd_7224788.iso|4048609280|A9B684D56B2DC9D43E19ACAA857D35DC|/' },
+                { type: 'file', name: 'Windows 10 1511 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_version_1511_x64_dvd_7223792.iso|4051984384|C02180B4599239E5F7B9A7FE18B1C89E|/' },
+                { type: 'file', name: 'Windows 10 1511 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1511_x64_dvd_7223622.iso|4187224064|FE3F221D193FEF02627F7F8CF0041BB3|/' },
+                { type: 'file', name: 'Windows 10 1607 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1607_updated_jul_2016_x86_dvd_9059597.iso|3100624896|0E1580E308D316A8648B0BF58D5CDEE2|/' },
+                { type: 'file', name: 'Windows 10 1607 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_version_1607_updated_jul_2016_x86_dvd_9056381.iso|3103516672|BA95618BB3D14C0B91A7D6D2518DCCFC|/' },
+                { type: 'file', name: 'Windows 10 1607 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1607_updated_jul_2016_x86_dvd_9060050.iso|3275581440|006F76229DB61ADA1D8E49DD4A6A0A5D|/' },
+                { type: 'file', name: 'Windows 10 1607 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1607_updated_jul_2016_x64_dvd_9057083.iso|4149981184|EFCB9D522DAA0C6A7BF3A5464C65DCBC|/' },
+                { type: 'file', name: 'Windows 10 1607 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9056220.iso|4150953984|AD0737D5F182082C37E6D1DB7CCDBB77|/' },
+                { type: 'file', name: 'Windows 10 1607 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1607_updated_jul_2016_x64_dvd_9056935.iso|4347183104|35EA5DB0F3BB714F5CE0740FB89D82D1|/' },
+                { type: 'file', name: 'Windows 10 1703 Enterprise (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1703_updated_june_2017_x86_dvd_10721462.iso|3737954304|9DF7203BD15FF86CD381D9C998462C78|/' },
+                { type: 'file', name: 'Windows 10 1703 Education (x86)', url: 'ed2k://|file|cn_windows_10_education_version_1703_updated_june_2017_x86_dvd_10721047.iso|3734099968|69030CC7AC346DE4C3E9DE2526B213BE|/' },
+                { type: 'file', name: 'Windows 10 1703 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1703_updated_june_2017_x86_dvd_10725413.iso|4344467456|B3A695DA4BB0025696F168745E372BBE|/' },
+                { type: 'file', name: 'Windows 10 1703 Enterprise (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_version_1703_updated_june_2017_x64_dvd_10720588.iso|4959832064|1BE4CE1BF03E20D088AD79231B133478|/' },
+                { type: 'file', name: 'Windows 10 1703 Education (x64)', url: 'ed2k://|file|cn_windows_10_education_version_1703_updated_june_2017_x64_dvd_10720997.iso|4943917056|EC41C7986E39B42C028B680A0F139278|/' },
+                { type: 'file', name: 'Windows 10 1703 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multiple_editions_version_1703_updated_june_2017_x64_dvd_10724850.iso|5741144064|7717C389428734009E0350A1BB8F2508|/' },
+                { type: 'file', name: 'Windows 10 1709 (Multiple Editions) (x86)', url: 'ed2k://|file|cn_windows_10_multi-edition_version_1709_updated_sept_2017_x86_dvd_100090805.iso|3551899648|6C24A796B66CDA6D909508A16C74B406|/' },
+                { type: 'file', name: 'Windows 10 1709 (Multiple Editions) (x64)', url: 'ed2k://|file|cn_windows_10_multi-edition_version_1709_updated_sept_2017_x64_dvd_100090804.iso|4740610048|37051C54894776826823DAEBDD03F1DC|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1803(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1803_updated_march_2018_x86_dvd_12063452.iso|3480692736|0EC3C40EF13D772798209981F18B6A5D|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1803(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1803_updated_march_2018_x64_dvd_12063766.iso|4714162176|FB8C05DE594CD7E58D88993652DD2102|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1809(x86)', url: 'ed2k://|file|cn_windows_10_consumer_edition_version_1809_updated_sept_2018_x86_dvd_c904d6c8.iso|3564730368|B31577E3A3825925D4D7972457D5A264|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1809(x64)', url: 'ed2k://|file|cn_windows_10_consumer_edition_version_1809_updated_sept_2018_x64_dvd_051b7719.iso|4808400896|B740D15C0A6056F4955A37792AB92501|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1903(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1903_x86_dvd_44b77216.iso|3557466112|926D3E6D2503D0E8CB4C8599C8DEC58F|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1903(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1903_x64_dvd_8f05241d.iso|4905476096|F28FDC23DA34D55BA466BFD6E91DD311|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1909(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1909_x86_dvd_08dd0d3c.iso|3859558400|40991568D016CCBAEE1E67CD38FAABE8|/' },
+                { type: 'file', name: 'Windows 10(消费者版)1909(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_1909_x64_dvd_76365bf8.iso|5381154816|6A56DE112B164EC054D1104C53F8F10B|/' },
+                { type: 'file', name: 'Windows 10(消费者版)20H1(x86)', url: 'magnet:?xt=urn:btih:68D043192FA8B9C80C4757D4CD459184338E8BA2&dn=cn_windows_10_consumer_editions_version_2004_x86_dvd_f9233032.iso&xl=3717070848' },
+                { type: 'file', name: 'Windows 10(消费者版)20H1(x64)', url: 'magnet:?xt=urn:btih:75C53FC59E677E355327E73E3296F8848F90A538&dn=cn_windows_10_consumer_editions_version_2004_x64_dvd_0c2eefdb.iso&xl=5634521088' },
+                { type: 'file', name: 'Windows 10(消费者版)20H2(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_20h2_x86_dvd_a66fccd6.iso|4467089408|79F2990664D883F34177BE57130C79A6|/' },
+                { type: 'file', name: 'Windows 10(消费者版)20H2(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_20h2_x64_dvd_d4f7a83e.iso|6044921856|C71BFC9033EC0C9510E51744833AD84A|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H1(x86)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_21h1_x86_dvd_5f857a50.iso|4199946240|2A21FDB6FFB903A0EF594A9F0FBFAEDB|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H1(x64)', url: 'ed2k://|file|cn_windows_10_consumer_editions_version_21h1_x64_dvd_1baf479d.iso|5807677440|E53960C7CAD323F60442A8AB9C269C2E|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H2(x86)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_21h2_x86_dvd_511fdc1c.iso|4237803520|A4A26EEBD9A094F971529F71C382868E|/' },
+                { type: 'file', name: 'Windows 10(消费者版)21H2(x64)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_21h2_x64_dvd_cf28838e.iso|5859952640|8B3EDE1AEEEAFAB777F6DFB46960ECE2|/' },
+                { type: 'folder', name: 'Windows 10 22H2', contents: 'Windows 10 22H2' },
+
+            ],
+            'Windows 10长期服务版': [
+                { type: 'file', name: 'Windows 10 Enterprise 2015 LTSB (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_2015_ltsb_x86_dvd_6848426.iso|2887350272|681C2F80A511FCEC73B7A5D878D4D9EC|/' },
+                { type: 'file', name: 'Windows 10 Enterprise 2015 LTSB (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_2015_ltsb_x64_dvd_6848425.iso|3907538944|38E47AB92B6D97DF2BE602BBC9969D34|/' },
+                { type: 'file', name: 'Windows 10 Enterprise 2016 LTSB (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_2016_ltsb_x86_dvd_9057089.iso|2817034240|67C3865D4845BA2CB7649F8|/' },
+                { type: 'file', name: 'Windows 10 Enterprise 2016 LTSB (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_2016_ltsb_x64_dvd_9060409.iso|3821895680|FF17FF2D5919E3A560151BBC11C399D1|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2019 (x86)', url: 'ed2k://|file|cn_windows_10_enterprise_ltsc_2019_x86_dvd_1814dbab.iso|3196803072|2D39C54A2E99BAC308191C74A15B3237|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2019 (x64)', url: 'ed2k://|file|cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso|4478906368|E7C526499308841A4A6D116C857DB669|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2021 (x86)', url: 'ed2k://|file|SW_DVD9_WIN_ENT_LTSC_2021_32BIT_ChnSimp_MLF_X22-84401.ISO|3621132288|F67BB339ADFEFCF6ED22400EAACBD068|/' },
+                { type: 'file', name: 'Windows 10 Enterprise LTSC 2021 (x64)', url: 'ed2k://|file|SW_DVD9_WIN_ENT_LTSC_2021_64BIT_ChnSimp_MLF_X22-84402.ISO|5044211712|1555B7DCA052B5903E765BDD58EE68DB58A42408D|/' }
+            ],
+            'Windows 10 22H2': [
+                { type: 'file', name: 'Windows 10(消费者版)22H2(x86)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_x86_dvd_fa2c4567.iso|4352614400|8594D74C1E1D983E8386819AAE311668|/' },
+                { type: 'file', name: 'Windows 10(消费者版)22H2(x64)', url: 'ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_x64_dvd_139de365.iso|6078826496|4EA34F24DB4F1EE695A608B39C369167|/' }
+            ],
+
+        };
+        function showFolderContent(folderName) {
+            const navPath = document.getElementById('navPath');
+            const backButton = document.getElementById('backButton');
+            backButton.style.display = currentPath.length > 1 ? 'inline-block' : 'none';
+            
+            navPath.innerHTML = '';
+            if (currentPath.length === 1) {
+                navPath.style.textAlign = 'center';
+                navPath.style.width = '100%';
+            } else {
+                navPath.style.textAlign = 'left';
+                navPath.style.width = 'auto';
+            }
+            currentPath.forEach((path, index) => {
+                const pathElement = document.createElement('span');
+                if (index === currentPath.length - 1) {
+                    pathElement.className = 'text-gray-800 font-medium';
+                    pathElement.textContent = (currentPath.length === 1 && index === 0) ? '返回主页' : path;
+                    if (currentPath.length === 1 && index === 0) {
+                        pathElement.style.cursor = 'pointer';
+                        pathElement.classList.add('hover:underline');
+                        pathElement.onclick = function() {
+                            window.location.href = 'index.html';
+                        };
+                    }
+                } else {
+                    pathElement.className = 'text-primary cursor-pointer hover:underline';
+                    pathElement.textContent = path;
+                    pathElement.onclick = () => navigateToPath(index);
+                }
+                navPath.appendChild(pathElement);
+                if (index < currentPath.length - 1) {
+                    const separator = document.createElement('span');
+                    separator.className = 'mx-1 text-gray-400';
+                    separator.textContent = '>';
+                    navPath.appendChild(separator);
+                }
+            });
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            if (!fileSystem[folderName]) {
+                fileList.innerHTML = '<div class="px-4 py-3 text-center text-gray-500">文件夹不存在</div>';
+                return;
+            }
+            const contents = fileSystem[folderName];
+            contents.forEach(item => {
+                if (item.type === 'folder') {
+                    fileList.appendChild(createFolderItem(item.name));
+                } else if (item.type === 'file') {
+                    fileList.appendChild(createFileItem(item));
+                } else if (item.type === 'link') {
+                    fileList.appendChild(createLinkItem(item));
+                }
+            });
+        }
+        function createFolderItem(folderName) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'explorer.ico';
+            icon.alt = '文件夹图标';
+            icon.className = 'w-5 h-5 mr-3';
+            const name = document.createElement('span');
+            name.className = 'folder-text';
+            name.textContent = folderName;
+            name.onclick = () => {
+                currentPath.push(folderName);
+                showFolderContent(folderName);
+            };
+            leftSection.appendChild(icon);
+            leftSection.appendChild(name);
+            div.appendChild(leftSection);
+            return div;
+        }
+        function createFileItem(file) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'iso.ico';
+            icon.alt = '文件图标';
+            icon.className = 'w-5 h-5 mr-3';
+            const isSpecialLink = file.url.startsWith('ed2k://') || file.url.startsWith('magnet:?xt');
+            if (isSpecialLink) {
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'text-gray-700 hover:text-primary hover:underline';
+                nameSpan.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(nameSpan);
+                div.appendChild(leftSection);
+                div.addEventListener('click', function() {
+                    const isAndroid = /Android/i.test(navigator.userAgent);
+                    async function checkAndCopyText(text) {
+                        try {
+                            if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                                try {
+                                    const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                    if (permissionStatus.state === 'denied') {
+                                        showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                        return;
+                                    }
+                                } catch (permissionError) {
+                                    console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                                }
+                            }
+                            await navigator.clipboard.writeText(text);
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                            tooltip.textContent = '链接已复制到剪贴板';
+                            document.body.appendChild(tooltip);
+                            setTimeout(function() {
+                                tooltip.remove();
+                            }, 3000);
+                        } catch (err) {
+                            console.error('复制失败: ', err);
+                            showErrorTooltip('复制失败，请手动复制链接');
+                        }
+                    }
+                    function showErrorTooltip(message) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = message;
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    }
+                    checkAndCopyText(file.url);
+                });
+            } else {
+                const a = document.createElement('a');
+                a.href = file.url;
+                a.target = '_blank';
+                a.className = 'text-gray-700 hover:text-primary hover:underline';
+                a.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(a);
+                div.appendChild(leftSection);
+                div.addEventListener('click', function(event) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                    tooltip.textContent = '正在下载...';
+                    document.body.appendChild(tooltip);
+                    setTimeout(function() {
+                        tooltip.remove();
+                    }, 3000);
+                });
+            }
+            return div;
+        }
+        function createLinkItem(link) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'Transfer.png';
+            icon.alt = '外部链接图标';
+            icon.className = 'w-5 h-5 mr-3';
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_self'; // 在当前页面打开
+            a.className = 'text-gray-700 hover:text-primary hover:underline';
+            a.textContent = link.name;
+            leftSection.appendChild(icon);
+            leftSection.appendChild(a);
+            div.appendChild(leftSection);
+            return div;
+        }
+        function goBack() {
+            if (currentPath.length > 1) {
+                currentPath.pop();
+                showFolderContent(currentPath[currentPath.length - 1]);
+            }
+        }
+        function navigateToPath(index) {
+            if (index < currentPath.length - 1) {
+                currentPath = currentPath.slice(0, index + 1);
+                showFolderContent(currentPath[currentPath.length - 1]);
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                showFolderContent(currentPath[0]);
+            });
+        } else {
+            showFolderContent(currentPath[0]);
+        }
+    </script>
+    
+        </div>
+    </div>
+    <script src="assets/js/utils.js" defer></script>
+    <script src="assets/js/festival.js" defer></script>
+</body>
+</html>

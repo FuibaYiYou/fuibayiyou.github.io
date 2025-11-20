@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 2.0</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md rounded-lg overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-2">
+                    <i id="backButton" class="fa fa-arrow-left back-button" onclick="window.location.href='index.html'"></i>
+                    <div id="navPath" class="text-sm font-medium text-gray-700">
+                        <span class="text-primary cursor-pointer hover:underline" onclick="window.location.href='index.html'">首页</span>
+                        <span class="mx-1 text-gray-400">></span>
+                        <span class="text-gray-800 font-medium">Windows 2.0</span>
+                    </div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100">
+                <!-- Windows 2.0 文件列表 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="floppy.png" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://winworldpc.com/download/49c3a35d-1245-0911-c3a7-c29d25525400" target="_blank" class="text-gray-700 hover:text-primary hover:underline">MS-DOS</a>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="floppy.png" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://winworldpc.com/product/windows-20/20" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows 2.0</a>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const fileItems = document.querySelectorAll('.file-item');
+                    
+                    fileItems.forEach(item => {
+                        const link = item.querySelector('a');
+                        if (link) {
+                            const href = link.getAttribute('href');
+                            
+                            if (href && (href.startsWith('ed2k://') || href.startsWith('magnet:?xt'))) {
+                                item.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    const isAndroid = /Android/i.test(navigator.userAgent);
+                                    
+                                    async function checkAndCopyText(text) {
+                                        try {
+                                            if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                                                try {
+                                                    const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                                    if (permissionStatus.state === 'denied') {
+                                                        showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                                        return;
+                                                    }
+                                                } catch (permissionError) {
+                                                    console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                                                }
+                                            }
+                                            await navigator.clipboard.writeText(text);
+                                            const tooltip = document.createElement('div');
+                                            tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                            tooltip.textContent = '链接已复制到剪贴板';
+                                            document.body.appendChild(tooltip);
+                                            setTimeout(function() {
+                                                tooltip.remove();
+                                            }, 3000);
+                                        } catch (err) {
+                                            console.error('复制失败: ', err);
+                                            showErrorTooltip('复制失败，请手动复制链接');
+                                        }
+                                    }
+                                    
+                                    function showErrorTooltip(message) {
+                                        const tooltip = document.createElement('div');
+                                        tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                        tooltip.textContent = message;
+                                        document.body.appendChild(tooltip);
+                                        setTimeout(function() {
+                                            tooltip.remove();
+                                        }, 3000);
+                                    }
+                                    
+                                    checkAndCopyText(href);
+                                });
+                            } else if (href && href.includes('123865.com')) {
+                                item.addEventListener('click', function(event) {
+                                    const tooltip = document.createElement('div');
+                                    tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                    tooltip.textContent = '正在下载...';
+                                    document.body.appendChild(tooltip);
+                                    setTimeout(function() {
+                                        tooltip.remove();
+                                    }, 3000);
+                                });
+                            } else {
+                                item.addEventListener('click', function(event) {
+                                    const tooltip = document.createElement('div');
+                                    tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                                    tooltip.textContent = '正在下载...';
+                                    document.body.appendChild(tooltip);
+                                    setTimeout(function() {
+                                        tooltip.remove();
+                                    }, 3000);
+                                });
+                            }
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/festival.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>依优酱</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+</head>
+<body>
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md rounded-lg overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-2">
+                    <img id="backButton" src="iso.ico" alt="返回" class="back-button" onclick="goBack()" style="display: none; width: 16px; height: 16px;">
+                    <div id="navPath" class="text-sm font-medium text-gray-700"></div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+        let currentPath = ['首页'];
+        const fileSystem = {
+            '首页': [
+                { type: 'link', name: 'Windows 1.0', url: 'Windows 1.0.html' },
+                { type: 'link', name: 'Windows 2.0', url: 'Windows 2.0.html' },
+                { type: 'link', name: 'Windows 3.0', url: 'Windows 3.0.html' },
+                { type: 'link', name: 'Windows 3.1', url: 'Windows 3.1.html' },
+                { type: 'link', name: 'Windows 3.11', url: 'Windows 3.11.html' },
+                { type: 'link', name: 'Windows 3.2', url: 'Windows 3.2.html' },               
+                { type: 'link', name: 'Windows NT', url: 'Windows NT.html' },
+                { type: 'file', name: 'Windows 95', url: 'https://www.123865.com/s/UjR9-oWM5d?pwd=4byE#' },
+                { type: 'file', name: 'Windows 98', url: 'https://www.123865.com/s/UjR9-mWM5d?pwd=cnJq#' },
+                { type: 'file', name: 'Windows Me', url: 'https://www.123865.com/s/UjR9-1WM5d?pwd=oYmN#' },
+                { type: 'link', name: 'Windows 2000', url: 'Windows 2000.html' },
+                { type: 'link', name: 'Windows XP', url: 'Windows XP.html' },
+                { type: 'link', name: 'Windows Vista', url: 'Windows Vista.html' },
+                { type: 'link', name: 'Windows 7', url: 'Windows 7.html' },
+                { type: 'link', name: 'Windows 8', url: 'Windows 8.html' },
+                { type: 'link', name: 'Windows 8.1', url: 'Windows 8.1.html' },
+                { type: 'link', name: 'Windows 10', url: 'Windows 10.html' },
+                { type: 'link', name: 'Windows 11', url: 'Windows 11.html' },
+                { type: 'link', name: 'Windows 精简版', url: 'Windows Lite.html' },
+                { type: 'link', name: 'Windows Server', url: 'Windows Server.html' }
+            ],
+
+        };
+        function showFolderContent(folderName) {
+            const navPath = document.getElementById('navPath');
+            const backButton = document.getElementById('backButton');
+            backButton.style.display = currentPath.length > 1 ? 'inline-block' : 'none';
+            
+            navPath.innerHTML = '';
+            if (currentPath.length === 1) {
+                navPath.style.textAlign = 'center';
+                navPath.style.width = '100%';
+            } else {
+                navPath.style.textAlign = 'left';
+                navPath.style.width = 'auto';
+            }
+            currentPath.forEach((path, index) => {
+                const pathElement = document.createElement('span');
+                if (index === currentPath.length - 1) {
+                    pathElement.className = 'text-gray-800 font-medium';
+                    pathElement.textContent = (currentPath.length === 1 && index === 0) ? '欢迎回来' : path;
+                } else {
+                    pathElement.className = 'text-primary cursor-pointer hover:underline';
+                    pathElement.textContent = path;
+                    pathElement.onclick = () => navigateToPath(index);
+                }
+                navPath.appendChild(pathElement);
+                if (index < currentPath.length - 1) {
+                    const separator = document.createElement('span');
+                    separator.className = 'mx-1 text-gray-400';
+                    separator.textContent = '>';
+                    navPath.appendChild(separator);
+                }
+            });
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            if (!fileSystem[folderName]) {
+                fileList.innerHTML = '<div class="px-4 py-3 text-center text-gray-500">文件夹不存在</div>';
+                return;
+            }
+            const contents = fileSystem[folderName];
+            contents.forEach(item => {
+                if (item.type === 'folder') {
+                    fileList.appendChild(createFolderItem(item.name));
+                } else if (item.type === 'file') {
+                    fileList.appendChild(createFileItem(item));
+                } else if (item.type === 'code') {
+                    fileList.appendChild(createCodeItem(item));
+                } else if (item.type === 'link') {
+                    fileList.appendChild(createLinkItem(item));
+                }
+            });
+        }
+        function createFolderItem(folderName) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'iso.ico';
+            icon.alt = '文件夹图标';
+            icon.style.width = '16px';
+            icon.style.height = '16px';
+            icon.style.marginRight = '12px';
+            const name = document.createElement('span');
+            name.className = 'folder-text';
+            name.textContent = folderName;
+            name.onclick = () => {
+                currentPath.push(folderName);
+                showFolderContent(folderName);
+            };
+            leftSection.appendChild(icon);
+            leftSection.appendChild(name);
+            div.appendChild(leftSection);
+            return div;
+        }
+        function createFileItem(file) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'iso.ico';
+            icon.alt = '文件图标';
+            icon.style.width = '16px';
+            icon.style.height = '16px';
+            icon.style.marginRight = '12px';
+            const isSpecialLink = file.url.startsWith('ed2k://') || file.url.startsWith('magnet:?xt');
+            if (isSpecialLink) {
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'text-gray-700 hover:text-primary hover:underline';
+                nameSpan.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(nameSpan);
+                div.appendChild(leftSection);
+                div.addEventListener('click', function() {
+                    const isAndroid = /Android/i.test(navigator.userAgent);
+                    async function checkAndCopyText(text) {
+                        try {
+                            if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                                try {
+                                    const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                    if (permissionStatus.state === 'denied') {
+                                        showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                        return;
+                                    }
+                                } catch (permissionError) {
+                                    console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                                }
+                            }
+                            await navigator.clipboard.writeText(text);
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                            tooltip.textContent = '链接已复制到剪贴板';
+                            document.body.appendChild(tooltip);
+                            setTimeout(function() {
+                                tooltip.remove();
+                            }, 3000);
+                        } catch (err) {
+                            console.error('复制失败: ', err);
+                            showErrorTooltip('复制失败，请手动复制链接');
+                        }
+                    }
+                    function showErrorTooltip(message) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = message;
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    }
+                    checkAndCopyText(file.url);
+                });
+            } else {
+                const a = document.createElement('a');
+                a.href = file.url;
+                a.target = '_blank';
+                a.className = 'text-gray-700 hover:text-primary hover:underline';
+                a.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(a);
+                div.appendChild(leftSection);
+                div.addEventListener('click', function(event) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                    tooltip.textContent = '正在下载...';
+                    document.body.appendChild(tooltip);
+                    setTimeout(function() {
+                        tooltip.remove();
+                    }, 3000);
+                });
+            }
+            return div;
+        }
+        function createLinkItem(link) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'iso.ico';
+            icon.alt = '链接图标';
+            icon.style.width = '16px';
+            icon.style.height = '16px';
+            icon.style.marginRight = '12px';
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_self'; 
+            a.className = 'text-gray-700 hover:text-primary hover:underline';
+            a.textContent = link.name;
+            leftSection.appendChild(icon);
+            leftSection.appendChild(a);
+            div.appendChild(leftSection);
+            return div;
+        }
+        
+        function createCodeItem(codeItem) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 bg-black border border-gray-700 rounded-lg';
+            
+            const header = document.createElement('div');
+            header.className = 'flex justify-between items-center mb-3';
+            
+            const title = document.createElement('span');
+            title.className = 'text-sm font-medium text-white';
+            title.textContent = codeItem.title || '代码命令';
+            
+            const copyButton = document.createElement('button');
+            copyButton.className = 'text-xs bg-white hover:bg-gray-200 text-black px-2 py-1 rounded';
+            copyButton.textContent = codeItem.copyText || '复制代码';
+            
+            header.appendChild(title);
+            header.appendChild(copyButton);
+            
+            const codeContainer = document.createElement('div');
+            codeContainer.className = 'space-y-2';
+            
+            if (codeItem.codes && Array.isArray(codeItem.codes)) {
+                codeItem.codes.forEach((code, index) => {
+                    const codeBox = document.createElement('div');
+                    codeBox.className = 'bg-gray-900 border border-gray-600 rounded p-3 font-mono text-sm text-white';
+                    codeBox.textContent = code;
+                    codeContainer.appendChild(codeBox);
+                });
+            }
+            
+            div.appendChild(header);
+            div.appendChild(codeContainer);
+            
+            copyButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                const allCode = codeItem.codes ? codeItem.codes.join('\n') : '';
+                
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                async function checkAndCopyText(text) {
+                    try {
+                        if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                            try {
+                                const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                if (permissionStatus.state === 'denied') {
+                                    showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                    return;
+                                }
+                            } catch (permissionError) {
+                                console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                            }
+                        }
+                        await navigator.clipboard.writeText(text);
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = '代码已复制到剪贴板';
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    } catch (err) {
+                        console.error('复制失败: ', err);
+                        showErrorTooltip('复制失败，请手动复制代码');
+                    }
+                }
+                
+                function showErrorTooltip(message) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                    tooltip.textContent = message;
+                    document.body.appendChild(tooltip);
+                    setTimeout(function() {
+                        tooltip.remove();
+                    }, 3000);
+                }
+                
+                checkAndCopyText(allCode);
+            });
+            
+            return div;
+        }
+        function goBack() {
+            if (currentPath.length > 1) {
+                currentPath.pop();
+                showFolderContent(currentPath[currentPath.length - 1]);
+            }
+        }
+        function navigateToPath(index) {
+            if (index < currentPath.length - 1) {
+                currentPath = currentPath.slice(0, index + 1);
+                showFolderContent(currentPath[currentPath.length - 1]);
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                showFolderContent(currentPath[0]);
+            });
+        } else {
+            showFolderContent(currentPath[0]);
+        }
+    </script>
+
+    <div id="htmer_time">6年5月23天16时44分22秒</div>
+    
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-row">
+                <img src="https://jsd.nn.ci/gh/FuibaFuyu/fuibafuyu.github.io/icon/icon-48.png" alt="冬優ちゃんの小窝" class="footer-icon">
+                <a href="https://fuibafuyu.net/" target="_blank" class="footer-link highlight">冬優ちゃんの小窝</a>
+            </div>
+            <div class="footer-row">
+                <img src="https://ys.mihoyo.com/main/favicon.ico" alt="原神" class="footer-icon">
+                <a href="https://ys.mihoyo.com/" target="_blank" class="footer-link">原神</a>
+            </div>
+            <div class="footer-row">
+                <img src="https://space.bilibili.com/favicon.ico" alt="哔哩哔哩" class="footer-icon">
+                <a href="https://space.bilibili.com/475548014" target="_blank" class="footer-link">哔哩哔哩</a>
+                <img src="https://cdn.aixifan.com/ico/favicon.ico" alt="AcFun" class="footer-icon">
+                <a href="https://www.acfun.cn/u/72249484" target="_blank" class="footer-link">AcFun</a>
+            </div>
+        </div>
+    </div>
+    <div class="ICP-info">
+        <span class="ICP-info-content">
+            <img src="https://icp.gov.moe/images/ico64.png" class="ICP-icon">
+            <a href="https://icp.gov.moe/?keyword=20259508" target="_blank" class="ICP-link">萌ICP备20259508号</a>
+        </span>
+    </div>
+    <script src="assets/js/main.js" defer></script>
+    
+    <script src="assets/js/utils.js" defer></script>
+    <script src="assets/js/festival.js" defer></script>
+    <script src="live2d-widget/dist/autoload.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

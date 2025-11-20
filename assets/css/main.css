@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background-image 0.5s ease;
+    background-color: #f0f0f0; /* 浅色默认背景 */
+}
+
+/* 暗色模式下的默认背景色 */
+.dark {
+    background-color: #1a1a1a;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-top: 40px;
+}
+
+.file-item {
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.2s ease;
+}
+
+.folder-text {
+    color: #2563eb;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.folder-text:hover {
+    color: #1d4ed8;
+    background-color: #f3f4f6;
+    text-decoration: underline;
+}
+
+.folder-text:active {
+    background-color: #e5e7eb;
+    transform: translateY(1px);
+}
+
+.back-button {
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #e0e7ff;
+}
+
+@media (max-width: 640px) {
+    .max-w-4xl {
+        max-width: 100%;
+    }
+    .file-item {
+        padding: 3px 4px;
+    }
+    
+    .folder-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* 时钟样式 */
+#htmer_time {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1em;
+    color: white;
+}
+
+/* 播放器容器样式 */
+.player-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.player-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* 播放器显示控制 */
+#springFestivalPlayer,
+#october7thPlayer,
+#nationalDayMusicPlayer {
+    display: none;
+}
+
+/* 页脚样式 */
+.footer {
+    text-align: center;
+    opacity: 0.7;
+    margin-top: 20px;
+    padding: 10px 0;
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-row {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-link.highlight {
+    color: rgb(248, 5, 142);
+}
+
+/* 备案信息样式 */
+.ICP-info {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.ICP-info-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ICP-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.ICP-link {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows精简版镜像</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md rounded-lg overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-2">
+                    <i id="backButton" class="fa fa-arrow-left back-button" onclick="window.location.href='index.html'"></i>
+                    <div id="navPath" class="text-sm font-medium text-gray-700">
+                        <span class="text-primary cursor-pointer hover:underline" onclick="window.location.href='index.html'">首页</span>
+                        <span class="mx-1 text-gray-400">></span>
+                        <span class="text-gray-800 font-medium">Windows Lite</span>
+                    </div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100">
+                <!-- Windows Lite 文件列表 -->
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="Folder.ico" alt="文件夹图标" class="w-5 h-5 mr-3">
+                        <span class="folder-text text-gray-700 hover:text-primary hover:underline cursor-pointer" onclick="showYituContent()">依兔</span>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="explorer.ico" alt="文件夹图标" class="w-5 h-5 mr-3">
+                        <span class="folder-text text-gray-700 hover:text-primary hover:underline cursor-pointer" onclick="showDongyouContent()">冬优</span>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="Folder.png" alt="文件夹图标" class="w-5 h-5 mr-3">
+                        <span class="folder-text text-gray-700 hover:text-primary hover:underline cursor-pointer" onclick="showLopatkinContent()">Lopatkin精简</span>
+                    </div>
+                </div>
+                <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center">
+                        <img src="iso.ico" alt="文件图标" class="w-5 h-5 mr-3">
+                        <a href="https://www.123865.com/s/UjR9-WHw5d?pwd=qvzx#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows 11精简版</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Lopatkin精简内容区域 -->
+            <div id="lopatkinContent" class="hidden">
+                <div class="border-t border-gray-200">
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center">
+                            <img src="https://nd-static.bdstatic.com/m-static/wp-brand/favicon.ico" alt="百度网盘图标" class="w-5 h-5 mr-3">
+                            <a href="https://pan.baidu.com/share/init?surl=zt5lB80KIR2F4U15xqKRsQ&pwd=X1nG" target="_blank" class="text-gray-700 hover:text-primary hover:underline">百度网盘</a>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center">
+                            <img src="https://img.alicdn.com/imgextra/i2/O1CN01DOYcs71v3B6bOemVM_!!6000000006116-2-tps-512-512.png" alt="阿里云盘图标" class="w-5 h-5 mr-3">
+                            <a href="https://www.aliyundrive.com/s/PyiqWTVjXxv" target="_blank" class="text-gray-700 hover:text-primary hover:underline">阿里云盘</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 冬优内容区域 -->
+            <div id="dongyouContent" class="hidden">
+                <div class="border-t border-gray-200">
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center">
+                            <img src="Folder.png" alt="文件夹图标" class="w-5 h-5 mr-3">
+                            <a href="https://fuibafuyu.net/10" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows 10</a>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center">
+                            <img src="Folder.png" alt="文件夹图标" class="w-5 h-5 mr-3">
+                            <a href="https://fuibafuyu.net/11" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows 11</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 依兔内容区域 -->
+            <div id="yituContent" class="hidden">
+                <div class="border-t border-gray-200">
+                    <div class="px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center">
+                            <img src="CD.png" alt="文件图标" class="w-5 h-5 mr-3">
+                            <a href="https://www.123865.com/s/UjR9-oKM5d?pwd=Q04B#" target="_blank" class="text-gray-700 hover:text-primary hover:underline">Windows 7 64位</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function showLopatkinContent() {
+            const lopatkinContent = document.getElementById('lopatkinContent');
+            lopatkinContent.classList.toggle('hidden');
+        }
+        
+        function showDongyouContent() {
+            const dongyouContent = document.getElementById('dongyouContent');
+            dongyouContent.classList.toggle('hidden');
+        }
+        
+        function showYituContent() {
+            const yituContent = document.getElementById('yituContent');
+            yituContent.classList.toggle('hidden');
+        }
+        
+        function showWindows10Content() {
+            const windows10Content = document.getElementById('windows10Content');
+            windows10Content.classList.toggle('hidden');
+        }
+        
+        function showWindows11Content() {
+            const windows11Content = document.getElementById('windows11Content');
+            windows11Content.classList.toggle('hidden');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileItems = document.querySelectorAll('#fileList .file-item');
+            
+            fileItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (!link) return;
+                
+                const href = link.getAttribute('href');
+                
+                if (href.includes('123865.com')) {
+                    item.addEventListener('click', function(event) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = '正在下载...';
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    });
+                }
+                else {
+                    item.addEventListener('click', function(event) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = '正在下载...';
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/festival.js" defer></script>
+</body>
+</html>

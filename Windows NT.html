@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows NT</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/festival.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#e0e7ff',
+                        neutral: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+        let currentPath = ['Windows NT'];
+        const fileSystem = {
+            'Windows NT': [
+                { type: 'folder', name: 'Windows NT 3.51', contents: 'Windows NT 3.51' },
+                { type: 'file', name: 'Windows NT 4.0 Server', url: 'https://www.123865.com/s/UjR9-QWM5d?pwd=5hNQ#' },
+                { type: 'file', name: 'Windows NT 4.0 Workstation', url: 'https://www.123865.com/s/UjR9-EWM5d?pwd=kSCo#' },
+                { type: 'file', name: 'Windows NT 4.0 Small Business Server', url: 'https://www.123865.com/s/UjR9-kWM5d?pwd=nwGP#' }
+            ],
+            'Windows NT 3.51': [
+                { type: 'file', name: 'Windows NT 3.51 Server', url: 'https://www.123pan.com/s/UjR9-AsM5d' },
+                { type: 'file', name: 'Windows NT Workstation 3.51', url: 'https://www.123865.com/s/UjR9-9WM5d?pwd=Lsyn#' }
+            ]
+        };
+        function showFolderContent(folderName) {
+            const navPath = document.getElementById('navPath');
+            const backButton = document.getElementById('backButton');
+            backButton.style.display = 'inline-block';
+            
+            navPath.innerHTML = '';
+            if (currentPath.length === 1) {
+                navPath.style.textAlign = 'center';
+                navPath.style.width = '100%';
+            } else {
+                navPath.style.textAlign = 'left';
+                navPath.style.width = 'auto';
+            }
+            currentPath.forEach((path, index) => {
+                const pathElement = document.createElement('span');
+                if (index === currentPath.length - 1) {
+                    pathElement.className = 'text-gray-800 font-medium';
+                    pathElement.textContent = path;
+                } else {
+                    pathElement.className = 'text-primary cursor-pointer hover:underline';
+                    pathElement.textContent = path;
+                    pathElement.onclick = () => navigateToPath(index);
+                }
+                navPath.appendChild(pathElement);
+                if (index < currentPath.length - 1) {
+                    const separator = document.createElement('span');
+                    separator.className = 'mx-1 text-gray-400';
+                    separator.textContent = '>';
+                    navPath.appendChild(separator);
+                }
+            });
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            if (!fileSystem[folderName]) {
+                fileList.innerHTML = '<div class="px-4 py-3 text-center text-gray-500">文件夹不存在</div>';
+                return;
+            }
+            const contents = fileSystem[folderName];
+            contents.forEach(item => {
+                if (item.type === 'folder') {
+                    fileList.appendChild(createFolderItem(item.name));
+                } else if (item.type === 'file') {
+                    fileList.appendChild(createFileItem(item));
+                }
+            });
+        }
+        function createFolderItem(folderName) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'Folder.ico';
+            icon.alt = '文件夹图标';
+            icon.className = 'w-5 h-5 mr-3';
+            const name = document.createElement('span');
+            name.className = 'folder-text';
+            name.textContent = folderName;
+            name.onclick = () => {
+                currentPath.push(folderName);
+                showFolderContent(folderName);
+            };
+            leftSection.appendChild(icon);
+            leftSection.appendChild(name);
+            div.appendChild(leftSection);
+            return div;
+        }
+        function createFileItem(file) {
+            const div = document.createElement('div');
+            div.className = 'px-4 py-3 file-item hover:bg-gray-50 flex items-center justify-between cursor-pointer';
+            const leftSection = document.createElement('div');
+            leftSection.className = 'flex items-center';
+            const icon = document.createElement('img');
+            icon.src = 'iso.ico';
+            icon.alt = '文件图标';
+            icon.className = 'w-5 h-5 mr-3';
+            const isSpecialLink = file.url.startsWith('ed2k://') || file.url.startsWith('magnet:?xt');
+            if (isSpecialLink) {
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'text-gray-700 hover:text-primary hover:underline';
+                nameSpan.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(nameSpan);
+                div.appendChild(leftSection);
+                div.addEventListener('click', function() {
+                    const isAndroid = /Android/i.test(navigator.userAgent);
+                    async function checkAndCopyText(text) {
+                        try {
+                            if (isAndroid && navigator.permissions && navigator.permissions.query) {
+                                try {
+                                    const permissionStatus = await navigator.permissions.query({ name: 'clipboard-write' });
+                                    if (permissionStatus.state === 'denied') {
+                                        showErrorTooltip('剪贴板权限被拒绝，请在系统设置中允许浏览器访问剪贴板');
+                                        return;
+                                    }
+                                } catch (permissionError) {
+                                    console.log('权限API不可用或出错，尝试直接复制:', permissionError);
+                                }
+                            }
+                            await navigator.clipboard.writeText(text);
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                            tooltip.textContent = '链接已复制到剪贴板';
+                            document.body.appendChild(tooltip);
+                            setTimeout(function() {
+                                tooltip.remove();
+                            }, 3000);
+                        } catch (err) {
+                            console.error('复制失败: ', err);
+                            showErrorTooltip('复制失败，请手动复制链接');
+                        }
+                    }
+                    function showErrorTooltip(message) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50';
+                        tooltip.textContent = message;
+                        document.body.appendChild(tooltip);
+                        setTimeout(function() {
+                            tooltip.remove();
+                        }, 3000);
+                    }
+                    checkAndCopyText(file.url);
+                });
+            } else {
+                const link = document.createElement('a');
+                link.href = file.url;
+                link.target = '_blank';
+                link.className = 'text-gray-700 hover:text-primary hover:underline';
+                link.textContent = file.name;
+                leftSection.appendChild(icon);
+                leftSection.appendChild(link);
+                div.appendChild(leftSection);
+            }
+            return div;
+        }
+        function navigateToPath(index) {
+            currentPath = currentPath.slice(0, index + 1);
+            showFolderContent(currentPath[currentPath.length - 1]);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            showFolderContent('Windows NT');
+        });
+    </script>
+</head>
+<body>
+    <div class="deng-box">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="deng-box1">
+      <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+          <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui-a">
+          <div class="shui-b"></div>
+          <div class="shui-c"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="couplet">新年快乐</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+    <div class="container mx-auto py-6 px-4">
+        <div class="bg-transparent shadow-md rounded-lg overflow-hidden border border-gray-200 max-w-4xl mx-auto">
+            <div class="border-b border-gray-200 bg-transparent p-4">
+                <div class="flex items-center gap-4">
+                    <button id="backButton" class="bg-transparent text-black px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors" onclick="window.location.href='index.html'">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <div id="navPath" class="text-sm font-medium text-gray-700">
+                        <span class="text-primary cursor-pointer hover:underline" onclick="window.location.href='index.html'">首页</span>
+                        <span class="mx-1 text-gray-400">></span>
+                        <span class="text-gray-800 font-medium">Windows NT</span>
+                    </div>
+                </div>
+            </div>
+            <div id="fileList" class="divide-y divide-gray-100"></div>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/festival.js" defer></script>
+</body>
+</html>
