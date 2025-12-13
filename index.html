@@ -14,8 +14,8 @@
 <div id="welcomeModal" class="modal" style="display: none;">
     <div class="modal-content">
         <h2 style="color: black;">欢迎回来</h2>
-        <p style="display: flex; align-items: center; gap: 5px; color: black;"><img src="favicon.ico" alt="图标" style="width: 16px; height: 16px;">镜像下载站:<a href="https://download.yiyoujiang.cn" target="_blank" style="color: #007bff; text-decoration: none; margin-left: 5px;">依兔酱下载站</a></p>
-        <p style="display: flex; align-items: center; gap: 5px; color: black;"><img src="Android.ico" alt="安卓图标" style="width: 16px; height: 16px;">安卓下载站:<a href="https://android.yiyoujiang.cn" target="_blank" style="color: #007bff; text-decoration: none; margin-left: 5px;">Android App Store</a></p>
+        <p style="display: flex; align-items: center; gap: 5px; color: black;"><img src="favicon.ico" alt="图标" style="width: 16px; height: 16px;">依兔酱下载站:<a href="https://download.yiyoujiang.cn" target="_blank" style="color: #007bff; text-decoration: none; margin-left: 5px;">依兔酱下载站</a></p>
+        <p style="display: flex; align-items: center; gap: 5px; color: black;"><img src="Android.ico" alt="安卓图标" style="width: 16px; height: 16px;">安卓应用下载站:<a href="https://android.yiyoujiang.cn" target="_blank" style="color: #007bff; text-decoration: none; margin-left: 5px;">Android App Store</a></p>
         <button id="confirmBtn" class="confirm-button">确定</button>
     </div>
 </div>
@@ -85,17 +85,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const lastShown = localStorage.getItem('welcomeModalLastShown');
     const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000; 
+    const oneHour = 60 * 60 * 1000; // 1小时毫秒数
     
-    if (!lastShown || (now - parseInt(lastShown)) > oneDay) {
+    if (!lastShown || (now - parseInt(lastShown)) > oneHour) {
         modal.style.display = 'flex';
-        localStorage.setItem('welcomeModalLastShown', now.toString());
-    }
-    
-    confirmBtn.addEventListener('click', function() {
+        
+        confirmBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            localStorage.setItem('welcomeModalLastShown', now.toString());
+        });
+    } else {
         modal.style.display = 'none';
-        localStorage.setItem('welcomeModalLastShown', Date.now().toString());
-    });
+    }
 });
 </script>
 <body>
@@ -202,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const pathElement = document.createElement('span');
                 if (index === currentPath.length - 1) {
                     pathElement.className = 'text-gray-800 font-medium';
-                    pathElement.textContent = (currentPath.length === 1 && index === 0) ? 'Microsoft Windows' : path;
+                    pathElement.textContent = (currentPath.length === 1 && index === 0) ? '欢迎回来' : path;
                 } else {
                     pathElement.className = 'text-primary cursor-pointer hover:underline';
                     pathElement.textContent = path;
@@ -501,9 +502,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="live2d-widget/dist/autoload.js"></script>
 </body>
 </html>
-
-
-
 
 
 
